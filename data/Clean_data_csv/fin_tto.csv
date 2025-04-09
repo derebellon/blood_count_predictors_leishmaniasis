@@ -1,0 +1,201 @@
+"","codigo_paciente","fecha_evaluacion_ftto","visita_eval_realizada_ftto","fecha_visita_ftto","infeccion_concom_ftto","num_les_pos_tto_ftto","tipo_lesion_ftto","linfa_regional_ftto","dias_tto_admido_ftto","total_amp_glu_ftto","total_cap_milte_50_ftto","total_cap_milte_10_ftto","estado_fin_tto_ftto","fechaHoraCreacion","dias_transcurridos_ftto","tipo_lesion_eb","cambio_lesion","cambio_lesion2","porcent_adheren_dias","porcent_adheren_ampoll_glc","porcent_adheren_cap50_mlf","porcent_adheren_cap10_mlf"
+"1","PH1001",2021-07-08,"Yes",2012-09-10,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,33,"Ulcer",NA,NA,100,100,NA,NA
+"2","PH1002",2021-07-08,"Yes",2012-10-02,"No",1,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"3","PH1003",2021-07-08,"Yes",2012-11-07,"No",5,"Other","No",20,80,NA,NA,"Improvement",2021-07-08,27,"Other",NA,NA,100,100,NA,NA
+"4","PH1004",2021-07-08,"Yes",2012-11-13,"No",4,"Plaque","No",20,76,NA,NA,NA,2021-07-08,20,"Ulcer",NA,NA,100,95,NA,NA
+"5","PH1005",2021-07-08,"Yes",2012-12-10,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,26,"Ulcer",NA,NA,100,100,NA,NA
+"6","PH1006",2021-07-08,"Yes",2013-01-28,"No",3,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,25,"Plaque",NA,NA,100,100,NA,NA
+"7","PH1007",2021-07-08,"Yes",2013-04-22,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,32,"Ulcer",NA,NA,100,100,NA,NA
+"8","PH1008",2021-07-08,"Yes",2013-05-14,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,100,NA,NA
+"9","PH1009",2021-07-08,"Yes",2013-05-29,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,100,NA,NA
+"10","PH1010",2021-07-08,"Yes",2013-05-30,"No",2,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,23,"Plaque",NA,NA,100,100,NA,NA
+"11","PH1011",2021-07-08,"Yes",2013-06-07,"No",6,"Plaque","No",20,72,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,90,NA,NA
+"12","PH1012",2021-07-08,"Yes",2013-07-03,"No",3,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,26,"Ulcer",NA,NA,100,100,NA,NA
+"13","PH1013",2021-07-08,"Yes",2013-09-11,"No",2,"Ulcer","No",20,60,NA,NA,"Improvement",2021-07-08,27,"Ulcer",NA,NA,100,100,NA,NA
+"14","PH1014",2021-07-08,"Yes",2013-10-22,"No",3,NA,NA,20,80,NA,NA,"Improvement",2021-07-08,21,"Plaque",NA,NA,100,100,NA,NA
+"15","PH1015",2021-07-08,"Yes",2013-12-09,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,19,"Ulcer",NA,NA,100,100,NA,NA
+"16","PH1016",2021-07-08,"Yes",2014-03-03,"No",1,NA,NA,20,80,NA,NA,"Improvement",2021-07-08,21,"Plaque",NA,NA,100,100,NA,NA
+"17","PH1017",2021-07-08,"Yes",2014-04-21,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,31,"Ulcer",NA,NA,100,100,NA,NA
+"18","PH1018",2021-07-08,"Yes",2014-05-02,"No",1,"Plaque","No",20,76,NA,NA,"Improvement",2021-07-08,21,"Plaque",NA,NA,100,95,NA,NA
+"19","PH1019",2021-07-08,"Yes",2014-05-19,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,21,"Plaque",NA,NA,100,100,NA,NA
+"20","PH1020",2021-07-08,"Yes",2014-06-03,"No",1,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,100,NA,NA
+"21","PH1021",2021-07-08,"Yes",2012-02-29,"No",2,"Plaque","No",20,57,NA,NA,"Improvement",2021-07-08,27,"Ulcer",NA,NA,100,95,NA,NA
+"22","PH1022",2021-07-08,"Yes",2012-03-06,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Plaque",NA,NA,100,100,NA,NA
+"23","PH1023",2021-07-08,"Yes",2012-03-22,"No",1,"Plaque","No",20,57,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,95,NA,NA
+"24","PH1024",2021-07-08,"Yes",2012-04-17,"No",5,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"25","PH1025",2021-07-08,"Yes",2012-04-17,"No",2,"Plaque","No",20,72,NA,NA,"Improvement",2021-07-08,19,"Ulcer",NA,NA,100,90,NA,NA
+"26","PH1026",2021-07-08,"Yes",2012-04-17,"No",2,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,19,"Ulcer",NA,NA,100,100,NA,NA
+"27","PH1027",2021-07-08,"Yes",2012-05-02,"No",3,"Papule",NA,20,60,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"28","PH1028",2021-07-08,"Yes",2013-04-11,"No",1,"Ulcer","No",20,57,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,95,NA,NA
+"29","PH1029",2021-07-08,"Yes",2013-04-22,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"30","PH1030",2021-07-08,"Yes",2013-05-02,"No",1,"Plaque","No",20,39,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,100,NA,NA
+"31","PH1031",2021-07-08,"Yes",2013-05-06,"No",2,"Plaque","No",20,51,NA,NA,"Improvement",2021-07-08,24,"Ulcer",NA,NA,100,100,NA,NA
+"32","PH1032",2021-07-08,"Yes",2013-09-24,"No",2,"Plaque","No",20,44,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,100,NA,NA
+"33","PH1033",2021-07-08,"Yes",2013-10-02,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,23,"Ulcer",NA,NA,100,100,NA,NA
+"34","PH1034",2021-07-08,"Yes",2013-09-30,"No",1,"Ulcer","No",20,76,NA,NA,"Improvement",2021-07-08,26,"Ulcer",NA,NA,100,95,NA,NA
+"35","PH1035",2021-07-08,"Yes",2013-10-09,"No",1,"Ulcer","No",20,64,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"36","PH1036",2021-07-08,"Yes",2013-10-17,"No",1,"Ulcer","No",20,46,NA,NA,"Improvement",2021-07-08,21,NA,NA,NA,100,100,NA,NA
+"37","PH1037",2021-07-08,"Yes",2013-10-23,"No",2,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"38","PH1038",2021-07-08,"Yes",2013-10-30,"No",1,"Ulcer","No",20,68,NA,NA,"Improvement",2021-07-08,23,"Ulcer",NA,NA,100,100,NA,NA
+"39","PH1039",2021-07-08,"Yes",2013-11-05,"No",6,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,28,"Ulcer",NA,NA,100,100,NA,NA
+"40","PH1040",2021-07-08,"Yes",2013-11-07,"No",2,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"41","PH1041",2021-07-08,"Yes",2013-11-21,"No",12,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"42","PH1042",2021-07-08,"Yes",2013-11-12,"No",1,"Ulcer","No",20,22,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"43","PH1043",2021-07-08,"Yes",2013-11-21,"No",2,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"44","PH1044",2021-07-08,"Yes",2013-12-11,"No",2,NA,NA,20,78,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,97.5,NA,NA
+"45","PH1045",2021-07-08,"Yes",2013-12-12,"No",1,"Ulcer","No",20,60,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"46","PH1046",2021-07-08,"Yes",2013-12-11,"No",1,"Ulcer","No",20,64,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"47","PH1047",2021-07-08,"Yes",2013-12-12,"No",1,"Ulcer","No",20,77,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,96.25,NA,NA
+"48","PH1048",2021-07-08,"Yes",2014-02-06,"No",1,"Ulcer","No",20,80,NA,NA,"Therapeutic failure",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"49","PH1049",2021-07-08,"Yes",2014-02-20,"No",2,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Papule",NA,NA,100,100,NA,NA
+"50","PH1050",2021-07-08,"Yes",2014-03-17,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,25,"Ulcer",NA,NA,100,100,NA,NA
+"51","PH1051",2021-07-08,"Yes",2014-03-12,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"52","PH1052",2021-07-08,"Yes",2014-04-01,"No",6,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"53","PH1053",2021-07-08,"Yes",2014-04-01,"No",1,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"54","PH1054",2021-07-08,"Yes",2014-04-01,"No",1,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"55","PH1055",2021-07-08,"Yes",2014-03-31,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"56","PH1056",2021-07-08,"Yes",2014-04-10,"No",5,"Plaque","No",20,69,NA,NA,"Improvement",2021-07-08,23,"Ulcer",NA,NA,100,100,NA,NA
+"57","PH1057",2021-07-08,"Yes",2014-04-10,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,21,"Plaque",NA,NA,100,100,NA,NA
+"58","PH1058",2021-07-08,"Yes",2014-04-29,"No",3,"Plaque","No",20,42,NA,NA,"Improvement",2021-07-08,26,"Ulcer",NA,NA,100,100,NA,NA
+"59","PH1059",2021-07-08,"Yes",2014-05-15,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,21,"Ulcer",NA,NA,100,100,NA,NA
+"60","PH1060",2021-07-08,"Yes",2014-05-14,"No",1,"Plaque","No",20,51,NA,NA,"Improvement",2021-07-08,35,"Ulcer",NA,NA,100,100,NA,NA
+"61","PH1061",2021-07-08,"Yes",2014-05-27,"No",0,NA,NA,20,80,NA,NA,"Apparent cure",2021-07-08,28,"Plaque",NA,NA,100,100,NA,NA
+"62","PH1062",2021-07-08,"Yes",2014-05-15,"No",1,"Ulcer","No",20,80,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"63","PH1063",2021-07-08,"Yes",2014-05-15,"No",1,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,100,NA,NA
+"64","PH1064",2021-07-08,"No",NA,"No",NA,NA,NA,20,30,NA,NA,NA,2021-07-08,NA,"Ulcer",NA,NA,100,100,NA,NA
+"65","PH1065",2021-07-08,"Yes",2014-06-18,"No",3,"Plaque","No",20,76,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,95,NA,NA
+"66","PH1066",2021-07-08,"Yes",2014-06-17,"No",2,"Plaque","No",20,60,NA,NA,"Improvement",2021-07-08,26,"Nodule",NA,NA,100,100,NA,NA
+"67","PH1067",2021-07-08,"Yes",2014-06-18,"No",1,"Plaque","No",20,54,NA,NA,"Improvement",2021-07-08,20,"Ulcer",NA,NA,100,90,NA,NA
+"68","PH1068",2021-07-08,"Yes",2014-06-25,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-07-08,22,"Ulcer",NA,NA,100,100,NA,NA
+"69","PH1069",2021-07-08,"No",NA,"No",NA,NA,NA,20,80,NA,NA,NA,2021-07-08,NA,"Ulcer",NA,NA,100,100,NA,NA
+"70","PH2001",2021-07-09,"Yes",2012-04-23,"No",1,"Other","No",28,NA,84,NA,NA,2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"71","PH2002",2021-07-09,"Yes",2012-05-07,"No",1,NA,NA,28,NA,84,NA,"Improvement",2021-07-09,34,"Papule",NA,NA,100,NA,100,NA
+"72","PH2003",2021-07-09,"Yes",2012-05-14,"No",0,"Other","No",28,NA,84,NA,"Improvement",2021-07-09,31,"Ulcer",NA,NA,100,NA,100,NA
+"73","PH2004",2021-07-09,"Yes",2012-09-27,"No",1,"Other","No",28,NA,84,NA,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,100,NA
+"74","PH2005",2021-07-09,"Yes",2012-11-01,"No",3,"Ulcer","No",28,NA,NA,84,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,NA,100
+"75","PH2006",2021-07-09,"Yes",2012-11-01,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Plaque",NA,NA,100,NA,100,NA
+"76","PH2007",2021-07-09,"Yes",2012-11-14,"No",3,"Ulcer","No",27,NA,53,NA,"Improvement",2021-07-09,27,"Plaque",NA,NA,96.4285714285714,NA,100,NA
+"77","PH2008",2021-07-09,"Yes",2012-11-22,"No",1,NA,NA,28,NA,NA,221,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,NA,100
+"78","PH2009",2021-07-09,"Yes",2013-01-03,"No",1,"Plaque","No",28,NA,NA,108,"Improvement",2021-07-09,30,"Plaque",NA,NA,100,NA,NA,100
+"79","PH2010",2021-07-09,"Yes",2013-03-13,"No",1,"Plaque","No",28,NA,80,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"80","PH2011",2021-07-09,"Yes",2013-03-14,"No",1,"Plaque","No",28,NA,NA,112,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"81","PH2012",2021-07-09,"Yes",2013-04-15,"No",1,"Plaque","No",28,NA,56,NA,"Improvement",2021-07-09,28,"Plaque",NA,NA,100,NA,100,NA
+"82","PH2013",2021-07-09,"Yes",2013-05-09,"No",3,"Plaque","No",28,NA,64,NA,"Improvement",2021-07-09,30,"Ulcer",NA,NA,100,NA,100,NA
+"83","PH2014",2021-07-09,"Yes",2013-05-14,"No",2,NA,NA,28,NA,28,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"84","PH2015",2021-07-09,"Yes",2013-06-06,"No",1,"Plaque","No",28,NA,NA,84,"Improvement",2021-07-09,28,"Plaque",NA,NA,100,NA,NA,100
+"85","PH2016",2021-07-09,"Yes",2013-11-14,"No",1,NA,NA,28,NA,NA,196,"Improvement",2021-07-09,28,"Plaque",NA,NA,100,NA,NA,100
+"86","PH2017",2021-07-09,"Yes",2012-03-07,"No",3,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,34,"Plaque",NA,NA,100,NA,100,NA
+"87","PH2018",2021-07-09,"Yes",2012-03-07,"No",2,"Plaque","No",28,NA,NA,196,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"88","PH2019",2021-07-09,"Yes",2012-03-11,"No",3,"Papule","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"89","PH2020",2021-07-09,"Yes",2012-03-13,"No",2,"Plaque","No",28,NA,NA,164,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"90","PH2021",2021-07-09,"Yes",2012-03-31,"No",2,"Plaque","No",28,NA,NA,224,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,NA,100
+"91","PH2022",2021-07-09,"Yes",2012-03-31,"No",4,"Plaque","No",28,NA,NA,168,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,NA,100
+"92","PH2023",2021-07-09,"Yes",2012-04-11,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"93","PH2024",2021-07-09,"Yes",2012-04-13,"No",5,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,29,"Plaque",NA,NA,100,NA,100,NA
+"94","PH2025",2021-07-09,"Yes",2012-04-23,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"95","PH2026",2021-07-09,"Yes",2012-04-23,"No",1,"Plaque","No",28,NA,NA,140,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"96","PH2027",2021-07-09,"Yes",2012-04-23,"No",1,"Plaque","No",28,NA,NA,168,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"97","PH2028",2021-07-09,"Yes",2012-04-25,"No",1,"Plaque","No",28,NA,NA,224,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"98","PH2029",2021-07-09,"Yes",2012-05-09,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Nodule",NA,NA,100,NA,100,NA
+"99","PH2030",2021-07-09,"Yes",2012-05-09,"No",2,"Scar with active border","No",28,NA,NA,168,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"100","PH2031",2021-07-13,"Yes",2012-05-14,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,31,"Ulcer",NA,NA,100,NA,100,NA
+"101","PH2032",2021-07-09,"Yes",2012-05-16,"No",1,"Papule","No",28,NA,84,NA,"Improvement",2021-07-09,30,"Ulcer",NA,NA,100,NA,100,NA
+"102","PH2033",2021-07-09,"Yes",2012-05-30,"No",2,"Scar with active border","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"103","PH2034",2021-07-09,"Yes",2012-06-04,"No",1,"Plaque","No",28,NA,NA,252,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"104","PH2035",2021-07-09,"Yes",2012-06-14,"No",2,"Scar with active border","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"105","PH2036",2021-07-09,"Yes",2012-07-12,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,100,NA
+"106","PH2037",2021-07-09,"Yes",2012-08-23,"No",2,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,35,"Ulcer",NA,NA,100,NA,100,NA
+"107","PH2038",2021-07-09,"Yes",2012-08-23,"No",2,"Scar with active border","No",28,NA,NA,142,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"108","PH2039",2021-07-09,"Yes",2012-09-17,"No",2,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,38,"Ulcer",NA,NA,100,NA,100,NA
+"109","PH2040",2021-07-09,"Yes",2012-10-10,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"110","PH2041",2021-07-09,"Yes",2012-10-31,"No",3,"Plaque","No",28,NA,NA,222,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"111","PH2042",2021-07-09,"Yes",2012-12-11,"No",1,"Papule","No",28,NA,NA,187,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"112","PH2043",2021-07-09,"Yes",2012-12-20,"No",4,"Plaque","No",28,NA,NA,112,"Improvement",2021-07-09,30,"Ulcer",NA,NA,100,NA,NA,100
+"113","PH2044",2021-07-09,"Yes",2012-12-20,"No",1,"Plaque","No",28,NA,28,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"114","PH2045",2021-07-09,"Yes",2013-02-28,"No",1,"Papule","No",28,NA,NA,133,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"115","PH2046",2021-07-09,"Yes",2013-03-05,"No",1,"Plaque","No",28,NA,NA,112,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,NA,100
+"116","PH2047",2021-07-09,"Yes",2013-03-05,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,29,"Ulcer",NA,NA,100,NA,100,NA
+"117","PH2048",2021-07-09,"Yes",2013-03-06,"No",3,"Plaque","No",28,NA,56,NA,NA,2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"118","PH2049",2021-07-09,"Yes",2013-03-27,"No",1,"Plaque","No",28,NA,84,NA,NA,2021-07-09,30,"Ulcer",NA,NA,100,NA,100,NA
+"119","PH2050",2021-07-09,"Yes",2013-03-26,"No",1,"Plaque","No",28,NA,84,NA,NA,2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"120","PH2051",2021-07-09,"Yes",2013-04-30,"No",3,"Plaque","No",28,NA,NA,121,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"121","PH2052",2021-07-09,"Yes",2013-05-29,"No",1,"Plaque","No",28,NA,84,NA,"Improvement",2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"122","PH2053",2021-07-09,"Yes",2013-06-11,"No",1,"Plaque","No",28,NA,84,NA,NA,2021-07-09,34,"Ulcer",NA,NA,100,NA,100,NA
+"123","PH2054",2021-07-09,"Yes",2013-07-09,"No",1,"Plaque","No",28,NA,28,NA,NA,2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"124","PH2055",2021-07-09,"Yes",2013-08-07,"No",1,"Plaque","No",28,NA,28,NA,NA,2021-07-09,28,"Ulcer",NA,NA,100,NA,100,NA
+"125","PH2056",2021-07-09,"Yes",2013-10-09,"No",1,"Plaque","No",28,NA,NA,168,NA,2021-07-09,28,"Ulcer",NA,NA,100,NA,NA,100
+"126","PH2057",2021-07-09,"Yes",2013-11-07,"No",1,NA,NA,28,NA,NA,160,NA,2021-07-09,30,"Ulcer",NA,NA,100,NA,NA,100
+"127","PH3001",2021-11-16,"Yes",2017-05-22,"No",1,"Ulcer","No",20,80,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,100,100,NA,NA
+"128","PH3002",2021-11-16,"Yes",2017-05-31,"No",2,"Plaque","No",18,72,NA,NA,"Improvement",2021-11-16,23,"Ulcer",NA,NA,90,90,NA,NA
+"129","PH3003",2021-11-16,"Yes",2017-06-05,"No",1,"Plaque","No",20,80,NA,NA,NA,2021-11-16,25,"Ulcer",NA,NA,100,100,NA,NA
+"130","PH3004",2021-11-16,"Yes",2017-08-23,"No",1,"Ulcer","No",19,76,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,95,95,NA,NA
+"131","PH3005",2021-11-16,"Yes",2017-08-23,"No",1,"Ulcer","No",18,72,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,90,90,NA,NA
+"132","PH3006",2021-11-16,"Yes",2017-11-10,"Yes",1,"Scar with active border","No",20,60,NA,NA,"Improvement",2021-11-16,18,"Ulcer",NA,NA,100,100,NA,NA
+"133","PH3007",2021-11-16,"Yes",2018-01-31,"No",2,"Plaque","No",20,80,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,100,100,NA,NA
+"134","PH3008",2021-11-16,"Yes",2018-05-08,"No",3,"Ulcer","No",20,80,NA,NA,"Improvement",2021-11-16,20,"Ulcer",NA,NA,100,100,NA,NA
+"135","PH3009",2021-11-16,"Yes",2018-06-18,"No",1,"Plaque","No",20,80,NA,NA,NA,2021-11-16,19,"Ulcer",NA,NA,100,100,NA,NA
+"136","PH3010",2021-11-16,"Yes",2018-06-26,"No",1,"Scar with active border","No",18,72,NA,NA,NA,2021-11-16,21,"Plaque",NA,NA,90,90,NA,NA
+"137","PH3011",2021-11-16,"Yes",2018-10-09,"No",2,"Plaque","No",20,80,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,100,100,NA,NA
+"138","PH3012",2021-11-16,"Yes",2019-03-26,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-16,25,"Ulcer",NA,NA,100,100,NA,NA
+"139","PH3013",2021-11-16,"Yes",2019-04-30,"No",3,"Plaque","No",19,76,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,95,95,NA,NA
+"140","PH3014",2021-11-16,"Yes",2019-06-18,"No",1,"Scar with active border","No",19,56,NA,NA,"Improvement",2021-11-16,19,"Ulcer",NA,NA,95,93.3333333333333,NA,NA
+"141","PH3015",2021-11-16,"Yes",2019-08-28,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-16,19,"Ulcer",NA,NA,100,100,NA,NA
+"142","PH3016",2021-11-16,"Yes",2019-12-16,"No",1,"Scar with active border","No",20,80,NA,NA,NA,2021-11-16,34,"Ulcer",NA,NA,100,100,NA,NA
+"143","PH3017",2021-11-16,"Yes",2020-01-07,"No",3,"Scar with active border","No",20,80,NA,NA,NA,2021-11-16,19,"Ulcer",NA,NA,100,100,NA,NA
+"144","PH3018",2021-11-16,"Yes",2020-08-31,"No",2,"Ulcer","No",20,80,NA,NA,NA,2021-11-16,41,"Ulcer",NA,NA,100,100,NA,NA
+"145","PH3019",2021-11-16,"No",2021-05-11,"No",NA,NA,NA,20,80,NA,NA,NA,2021-11-16,20,"Ulcer",NA,NA,100,100,NA,NA
+"146","PH3020",2021-11-16,"Yes",2019-03-11,"No",1,"Plaque","No",20,80,NA,NA,NA,2021-11-16,19,"Ulcer",NA,NA,100,100,NA,NA
+"147","PH3021",2021-11-16,"Yes",2019-08-13,"No",1,"Scar with active border","No",20,80,NA,NA,NA,2021-11-16,19,"Ulcer",NA,NA,100,100,NA,NA
+"148","PH3022",2021-11-16,"Yes",2019-08-27,"No",1,"Ulcer","No",20,80,NA,NA,"Improvement",2021-11-16,27,"Ulcer",NA,NA,100,100,NA,NA
+"149","PH3023",2021-11-16,"Yes",2019-10-08,"No",1,"Scar with active border","No",20,60,NA,NA,NA,2021-11-16,19,"Ulcer",NA,NA,100,100,NA,NA
+"150","PH3024",2021-11-16,"Yes",2021-02-03,"No",1,"Plaque","No",20,80,NA,NA,NA,2021-11-16,27,"Ulcer",NA,NA,100,100,NA,NA
+"151","PH3025",2021-11-16,"Yes",2017-08-01,"No",4,"Plaque","No",28,NA,84,NA,NA,2021-11-16,32,"Ulcer",NA,NA,100,NA,100,NA
+"152","PH3026",2021-11-16,"Yes",2018-04-12,"Yes",4,"Ulcer","No",27,NA,80,NA,"Improvement",2021-11-16,30,"Ulcer",NA,NA,96.4285714285714,NA,95.2380952380952,NA
+"153","PH3027",2021-11-16,"Yes",2017-11-16,"No",2,"Plaque","No",28,NA,84,NA,NA,2021-11-16,27,"Ulcer",NA,NA,100,NA,100,NA
+"154","PH3028",2021-11-16,"Yes",2017-11-30,"No",3,"Plaque","No",28,NA,84,NA,"Improvement",2021-11-16,27,"Ulcer",NA,NA,100,NA,100,NA
+"155","PH3029",2021-11-16,"Yes",2018-04-04,"No",1,"Ulcer","No",28,NA,84,NA,"Improvement",2021-11-16,27,"Ulcer",NA,NA,100,NA,100,NA
+"156","PH3030",2021-11-16,"Yes",2018-04-10,"No",NA,"Scar with active border","No",28,NA,84,NA,NA,2021-11-16,32,"Ulcer",NA,NA,100,NA,100,NA
+"157","PH3031",2021-11-16,"Yes",2019-09-24,"No",6,"Plaque","No",28,NA,84,NA,"Improvement",2021-11-16,35,"Ulcer",NA,NA,100,NA,100,NA
+"158","PH4002",2021-11-22,"Yes",2019-02-07,"No",2,"Ulcer","No",28,NA,84,NA,"Improvement",2021-11-22,24,"Ulcer",NA,NA,100,NA,100,NA
+"159","PH4003",2021-11-22,"Yes",2019-07-16,"No",1,"Ulcer","No",20,60,NA,NA,NA,2021-11-22,21,"Ulcer",NA,NA,100,100,NA,NA
+"160","PH4004",2021-11-22,"Yes",2019-08-27,"No",1,"Ulcer","No",20,80,NA,NA,"Improvement",2021-11-22,21,"Ulcer",NA,NA,100,100,NA,NA
+"161","PH4005",2021-11-22,"Yes",2019-09-02,"No",2,"Ulcer","No",20,60,NA,NA,NA,2021-11-22,21,"Ulcer",NA,NA,100,100,NA,NA
+"162","PH4006",2021-11-22,"Yes",2019-10-09,"No",1,"Plaque","No",28,NA,84,NA,NA,2021-11-22,28,"Ulcer",NA,NA,100,NA,100,NA
+"163","PH4007",2021-11-22,"Yes",2020-02-25,"No",1,"Ulcer","No",20,80,NA,NA,NA,2021-11-22,20,"Ulcer",NA,NA,100,100,NA,NA
+"164","PH4008",2021-11-22,"Yes",2020-03-09,"No",1,"Scar with active border","No",20,80,NA,NA,NA,2021-11-22,20,"Plaque",NA,NA,100,100,NA,NA
+"165","PH4009",2021-11-22,"Yes",2020-08-04,"No",3,"Scar with active border","No",28,NA,84,NA,NA,2021-11-22,29,"Ulcer",NA,NA,100,NA,100,NA
+"166","PH4010",2021-11-22,"Yes",2020-09-29,"No",1,"Ulcer","Yes",20,80,NA,NA,NA,2021-11-22,35,"Ulcer",NA,NA,100,100,NA,NA
+"167","PH4011",2021-11-22,"Yes",2020-10-05,"No",1,"Plaque","No",20,80,NA,NA,NA,2021-11-22,33,"Ulcer",NA,NA,100,100,NA,NA
+"168","PH4012",2021-11-22,"Yes",2021-02-08,"No",1,"Ulcer","No",20,80,NA,NA,NA,2021-11-22,19,"Ulcer",NA,NA,100,100,NA,NA
+"169","PH4013",2021-11-22,"Yes",2021-02-15,"No",1,"Ulcer","No",20,78,NA,NA,"Improvement",2021-11-22,19,"Ulcer",NA,NA,100,97.5,NA,NA
+"170","PH4014",2021-11-22,"Yes",2021-02-23,"No",2,"Ulcer","No",20,79,NA,NA,"Improvement",2021-11-22,20,"Ulcer",NA,NA,100,98.75,NA,NA
+"171","PH4015",2021-11-22,"Yes",2019-01-28,"No",3,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-22,21,"Ulcer",NA,NA,100,100,NA,NA
+"172","PH4016",2021-11-22,"Yes",2019-05-20,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-22,21,"Ulcer",NA,NA,100,100,NA,NA
+"173","PH4026",2021-11-22,"Yes",2019-06-18,"No",3,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-22,22,"Ulcer",NA,NA,100,100,NA,NA
+"174","PH4017",2021-11-22,"No",NA,"No",2,NA,NA,20,60,NA,NA,NA,2021-11-22,NA,"Ulcer",NA,NA,100,100,NA,NA
+"175","PH4018",2021-11-22,"Yes",2019-07-22,"Yes",3,"Ulcer","No",20,80,NA,NA,"Therapeutic failure",2021-11-22,54,"Other",NA,NA,100,100,NA,NA
+"176","PH4019",2021-11-22,"Yes",2020-01-09,"No",1,"Plaque","No",20,60,NA,NA,"Improvement",2021-11-22,28,"Ulcer",NA,NA,100,100,NA,NA
+"177","PH4020",2021-11-22,"Yes",2020-01-22,"No",NA,"Scar with active border","No",20,80,NA,NA,"Improvement",2021-11-22,30,"Ulcer",NA,NA,100,100,NA,NA
+"178","PH4021",2021-11-22,"Yes",2020-02-10,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-22,25,"Ulcer",NA,NA,100,100,NA,NA
+"179","PH4022",2021-11-22,"No",NA,NA,3,NA,NA,20,80,NA,NA,NA,2021-11-22,NA,"Ulcer",NA,NA,100,100,NA,NA
+"180","PH4023",2021-11-22,"Yes",2021-07-07,"No",3,"Plaque","No",28,NA,84,NA,"Improvement",2021-11-22,34,"Ulcer",NA,NA,100,NA,100,NA
+"181","PH4024",2021-11-22,"Yes",2021-07-07,"No",2,"Ulcer","No",28,NA,84,NA,"Improvement",2021-11-22,28,"Ulcer",NA,NA,100,NA,100,NA
+"182","PH4025",2021-11-22,"Yes",2021-07-21,"No",1,"Scar with active border","No",20,80,NA,NA,"Improvement",2021-11-22,22,"Ulcer",NA,NA,100,100,NA,NA
+"183","PH5001",2021-11-23,"Yes",2013-12-19,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,22,"Ulcer",NA,NA,100,100,NA,NA
+"184","PH5002",2021-11-23,"Yes",2014-04-01,"No",1,"Ulcer","No",20,80,NA,NA,"Improvement",2021-11-23,22,"Ulcer",NA,NA,100,100,NA,NA
+"185","PH5003",2021-11-23,"Yes",2014-05-05,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,25,"Nodule",NA,NA,100,100,NA,NA
+"186","PH5004",2021-11-23,"Yes",2014-06-09,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,26,"Ulcer",NA,NA,100,100,NA,NA
+"187","PH5005",2021-11-23,"Yes",2015-02-05,"No",1,"Plaque","No",20,60,NA,NA,"Improvement",2021-11-23,29,"Ulcer",NA,NA,100,100,NA,NA
+"188","PH5006",2021-11-23,"Yes",2015-03-26,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,38,"Ulcer",NA,NA,100,100,NA,NA
+"189","PH5007",2021-11-23,"Yes",2015-04-10,"No",1,"Ulcer","No",20,80,NA,NA,NA,2021-11-23,44,"Ulcer",NA,NA,100,100,NA,NA
+"190","PH5008",2021-11-23,"Yes",2015-05-21,"Yes",4,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,31,"Plaque",NA,NA,100,100,NA,NA
+"191","PH5009",2021-11-23,"Yes",2015-06-30,"No",2,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,27,"Ulcer",NA,NA,100,100,NA,NA
+"192","PH5010",2021-11-23,"Yes",2015-10-13,"No",2,"Ulcer","No",20,80,NA,NA,"Improvement",2021-11-23,22,"Ulcer",NA,NA,100,100,NA,NA
+"193","PH5011",2021-11-23,"Yes",2016-02-22,"No",1,"Plaque","No",20,80,NA,NA,NA,2021-11-23,21,"Plaque",NA,NA,100,100,NA,NA
+"194","PH5012",2021-11-23,"Yes",2016-04-06,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,37,"Ulcer",NA,NA,100,100,NA,NA
+"195","PH5013",2021-11-23,"Yes",2016-04-05,"No",1,"Plaque","No",20,60,NA,NA,"Improvement",2021-11-23,28,"Ulcer",NA,NA,100,100,NA,NA
+"196","PH5014",2021-11-23,"Yes",2016-04-12,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,34,"Ulcer",NA,NA,100,100,NA,NA
+"197","PH5015",2021-11-23,"Yes",2016-04-12,"Yes",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,26,"Ulcer",NA,NA,100,100,NA,NA
+"198","PH5016",2021-11-23,"Yes",2014-10-31,"No",1,"Plaque","No",20,80,NA,NA,"Improvement",2021-11-23,23,"Ulcer",NA,NA,100,100,NA,NA
+"199","PH5017",2021-11-23,"Yes",2015-02-19,"No",2,"Plaque","No",20,80,NA,NA,NA,2021-11-23,28,"Ulcer",NA,NA,100,100,NA,NA
+"200","PH5018",2021-11-23,"Yes",2015-09-18,"No",2,"Plaque","No",20,79,NA,NA,"Improvement",2021-11-23,23,"Ulcer",NA,NA,100,98.75,NA,NA
