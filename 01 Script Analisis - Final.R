@@ -1,7 +1,24 @@
-#### SCRIPT PARA LIMPIEZA Y ANALISIS EXPLORATORIO DE LAS BASES DE DATOS
-# INPUT:  BASES DE DATOS LIMPIAS
-# PROCESO: ANALISIS DESCRIPTIVO E INFERENCIAL
-# OUTPUT: TABLAS Y GRAFICOS FINALES PARA INFORME DE TESIS
+######################################################################
+## RESEARCH PROJECT: "Blood count parameters as early biomarkers for therapeutic outcome in cutaneous leishmaniasis: a retrospective cohort in Colombia"
+## PHASE 1 ANALYSIS SCRIPT – MSc THESIS
+## PRINCIPAL INVESTIGATOR & SCRIPT DEVELOPER: DAVID ESTEBAN REBELLON SANCHEZ
+## PROJECT SUPERVISORS: MARIA ADELAIDA GOMEZ & LYDA OSORIO
+## FINAL MANUSCRIPT CO-AUTHORS WHO APPROVED THE ANALYSIS: David E. Rebellón-Sánchez, Lina Giraldo-Parra, Jimena Jojoa, Jonny A. García-Luna, Lyda Osorio, María Adelaida Gómez
+## SPONSORING INSTITUTION: CENTRO INTERNACIONAL DE ENTRENAMIENTO E INVESTIGACIONES MEDICAS (CIDEIM) AND UNIVERSIDAD DEL VALLE
+######################################################################
+
+#### SCRIPT FOR DESCRIPTIVE AND EXPLORATORY ANALYSES CONDUCTED DURING THE MSc THESIS
+# INPUT: CLEANED DATABASES
+# PROCESS: DESCRIPTIVE ANALYSIS, CUTOFF OPTIMIZATION, AND MULTIPLE REGRESSION APPROACHES (INCLUDING COMPLEMENTARY MODELS TO STATA OUTPUTS)
+# OUTPUT: FIGURES, TABLES, AND PERFORMANCE METRICS — FULL REPORT STORED IN "Reports/Reporte_tesis_maestria_15Jul2022.pdf"
+
+######################################################################
+# NOTE: 
+# As mentioned in the README file, this project was conducted in two analytical phases. 
+# The first phase involved an extensive descriptive and exploratory analysis, which was fully reported in my MSc thesis entitled “Blood count parameters as early biomarkers for therapeutic outcome in cutaneous leishmaniasis: a retrospective cohort in Colombia”. This work was recognized as a meritorious thesis by the Universidad del Valle, granting me the MSc degree in Epidemiology.
+# The second phase consisted of validating the initial findings through a refined analytical strategy in R. A subset of clinically relevant variables—selected based on their performance in phase one—was integrated with complete blood count parameters to form the primary analytical dataset. This phase included multiple imputation of missing data, the development and validation of machine learning models, and a comparative performance assessment. Only the validated results from this second phase were used in the final manuscript submitted for publication.
+######################################################################
+
 
 ## Instalacion de paquetes
 
@@ -2249,16 +2266,7 @@ base_regresion_final %>%
 
 
 
-
-
-
-
-
-
-
-
-
-### logisticas
+### Regresiones logisticas
 
 #### SEGUNDO MODELO - RETIRANDO LAS NO ASOCIADAS
 #################################################
