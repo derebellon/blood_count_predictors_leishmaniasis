@@ -424,18 +424,18 @@ fin_tto$tipo_lesion_eb <- evaluacion_base$tipo_lesion_eb
 ## Create a variable summarizing lesion change
 fin_tto <- fin_tto %>% 
   mutate (cambio_lesion = case_when(
-    tipo_lesion_eb == "Ulcera" & tipo_lesion_ftto == "Ulcera" ~ "0",
-    tipo_lesion_eb == "Ulcera" & tipo_lesion_ftto == "Placa" ~ "1",
-    tipo_lesion_eb == "Ulcera" & tipo_lesion_ftto == "Papula" ~ "2",
-    tipo_lesion_eb == "Ulcera" & tipo_lesion_ftto == "Cicatriz con borde activo" ~ "3",
-    tipo_lesion_eb == "Ulcera" & tipo_lesion_ftto == "Otra" ~ "4",
-    tipo_lesion_eb == "Placa" & tipo_lesion_ftto == "Placa" ~ "5",
-    tipo_lesion_eb == "Placa" & tipo_lesion_ftto == "Ulcera" ~ "6",
-    tipo_lesion_eb == "Placa" & tipo_lesion_ftto == "Cicatriz con borde activo" ~ "7",
-    tipo_lesion_eb == "Papula" & tipo_lesion_ftto == "Ulcera" ~ "8",
-    tipo_lesion_eb == "Nodulo" & tipo_lesion_ftto == "Placa" ~ "9",
-    tipo_lesion_eb == "Otra" & tipo_lesion_ftto == "Ulcera" ~ "10",
-    tipo_lesion_eb == "Otra" & tipo_lesion_ftto == "Otra" ~ "11"
+    tipo_lesion_eb == "Ulcer" & tipo_lesion_ftto == "Ulcer" ~ "0",
+    tipo_lesion_eb == "Ulcer" & tipo_lesion_ftto == "Plaque" ~ "1",
+    tipo_lesion_eb == "Ulcer" & tipo_lesion_ftto == "Papule" ~ "2",
+    tipo_lesion_eb == "Ulcer" & tipo_lesion_ftto == "Scar with active border" ~ "3",
+    tipo_lesion_eb == "Ulcer" & tipo_lesion_ftto == "Other" ~ "4",
+    tipo_lesion_eb == "Plaque" & tipo_lesion_ftto == "Plaque" ~ "5",
+    tipo_lesion_eb == "Plaque" & tipo_lesion_ftto == "Ulcer" ~ "6",
+    tipo_lesion_eb == "Plaque" & tipo_lesion_ftto == "Scar with active border" ~ "7",
+    tipo_lesion_eb == "Papule" & tipo_lesion_ftto == "Ulcer" ~ "8",
+    tipo_lesion_eb == "Nodule" & tipo_lesion_ftto == "Plaque" ~ "9",
+    tipo_lesion_eb == "Other" & tipo_lesion_ftto == "Ulcer" ~ "10",
+    tipo_lesion_eb == "Other" & tipo_lesion_ftto == "Other" ~ "11"
   ))
 
 fin_tto$cambio_lesion <- factor(fin_tto$cambio_lesion,
@@ -757,9 +757,9 @@ gran_base_resumen$edad_categorica_corta <- factor(gran_base_resumen$edad_categor
 
 gran_base_resumen <- gran_base_resumen %>% 
   mutate (tipo_lesion_eval_base_corta = case_when(
-    tipo_lesion_evalbas %in% c("Nodulo", "Papula", "Otra") ~ "1",
-    tipo_lesion_evalbas == "Ulcera" ~ "0",
-    tipo_lesion_evalbas == "Placa" ~ "1")
+    tipo_lesion_evalbas %in% c("Nodule", "Papule", "Other") ~ "1",
+    tipo_lesion_evalbas == "Ulcer" ~ "0",
+    tipo_lesion_evalbas == "Plaque" ~ "1")
   )
 
 gran_base_resumen$tipo_lesion_eval_base_corta <- factor(gran_base_resumen$tipo_lesion_eval_base_corta,
@@ -1318,11 +1318,11 @@ final_df_cleaned <- data.frame(codigo_paciente = participantes$codigo_paciente,
 ## REPORT AFTER DATA CLEANING
 
 # Generate the exploratory analysis report
-create_report(final_df_cleaned, 
-              y = "estado_final", 
-              report_title = "Final Clean Data Exploratory Report",
-              output_file = "Reporte_Limpieza_Final.html",
-              output_dir = "Reports")
+#create_report(final_df_cleaned, 
+              #y = "estado_final", 
+              #report_title = "Final Clean Data Exploratory Report",
+              #output_file = "Reporte_Limpieza_Final.html",
+              #output_dir = "Reports")
 
 # Center the data frame for easier odds interpretation in STATA and R
 base_regre_centrada <- Big_hemo
