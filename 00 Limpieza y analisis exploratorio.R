@@ -308,6 +308,29 @@ evaluacion_base$linfa_regional_eb <- factor(evaluacion_base$linfa_regional_eb,
 evaluacion_base$tto_prescrito_eb <- factor(evaluacion_base$tto_prescrito_eb,
                                            levels = c("1", "2", "3"),
                                            labels = c("Glucantime", "Miltefosine", "Glucantime + Pentoxifylline"))
+
+# Reclassification of treatment groups to correct a misinterpretation in the original variable.
+# Initially, three groups were used for prescribed treatments: "Glucantime", "Miltefosine", and "Glucantime + Pentoxifylline".
+# However, upon review, it became clear that all patients labeled as "Glucantime + Pentoxifylline" just receive Glucantime me as their primary therapy and where asigned to Glucantime plus placebo group.
+# Treating these patients as a distinct group introduced an artificial treatment category and could bias comparisons.
+# Therefore, this recoding collapses the two Glucantime groups into one, ensuring accurate classification of treatment exposure.
+
+evaluacion_base <- evaluacion_base %>%
+  mutate(tratamiento = case_when(
+    tto_prescrito_eb == "Miltefosine" ~ "Miltefosine",
+    tto_prescrito_eb %in% c("Glucantime", "Glucantime + Pentoxifylline") ~ "Glucantime",
+    TRUE ~ NA_character_
+  ))
+
+# Convert the new variable into a factor with defined levels, where Glucantime is the reference group.
+evaluacion_base$tto_prescrito_eb <- factor(evaluacion_base$tratamiento,
+                                      levels = c("Glucantime", "Miltefosine"))
+
+levels(evaluacion_base$tto_prescrito_eb)
+
+str(evaluacion_base$tto_prescrito_eb)
+
+
 ## Glucantime dosage
 EDA(evaluacion_base$poso_glu_pres_eb)
 ## Miltefosine dosage
@@ -408,6 +431,27 @@ fin_tto$infeccion_concom_ftto <- factor(fin_tto$infeccion_concom_ftto,
                                         levels = c("0", "1"),
                                         labels= c("No", "Yes"))
 
+# I create a summative variable of infections before or during the treatment
+# Create a new variable indicating whether the patient had any concomitant infection
+# either at baseline (evaluacion_base) or at the end of treatment (fin_tto).
+# If either variable is "Yes", the new variable will be "Yes".
+# This captures the presence of any concomitant infection across the treatment period.
+
+fin_tto$infeccion_concomitante <- ifelse(
+  evaluacion_base$infeccion_concom_eb == "Yes" | fin_tto$infeccion_concom_ftto == "Yes",
+  "1", "0"
+)
+
+# Convert to a factor with labels: 0 = No, 1 = Yes
+fin_tto$infeccion_concomitante <- factor(fin_tto$infeccion_concomitante,
+                                         levels = c("0", "1"),
+                                         labels = c("No", "Yes"))
+
+
+# Convert the new variable into a factor
+fin_tto$infeccion_concomitante <- factor(fin_tto$infeccion_concomitante,
+                                         levels = c("No", "Yes"))
+
 EDA(fin_tto$num_les_pos_tto_ftto)
 
 ## Lesion type for end of treatment
@@ -474,6 +518,21 @@ fin_tto$cambio_lesion2 <- factor(fin_tto$cambio_lesion2,
 fin_tto$linfa_regional_ftto <- factor(fin_tto$linfa_regional_ftto,
                                       levels = c("0", "1"),
                                       labels= c("No", "Yes"))
+
+# Create a binary indicator for regional lymphadenopathy (baseline or end of treatment).
+# If either variable indicates "Yes", assign "1"; otherwise assign "0".
+
+fin_tto$linfadenop_before_after_tto <- ifelse(
+  evaluacion_base$linfa_regional_eb == "Yes" | fin_tto$linfa_regional_ftto == "Yes",
+  "1", "0"
+)
+
+# Convert to a factor with labels: 0 = No, 1 = Yes
+fin_tto$linfadenop_before_after_tto <- factor(fin_tto$linfadenop_before_after_tto ,
+                                          levels = c("0", "1"),
+                                          labels = c("No", "Yes"))
+
+
 
 EDA(fin_tto$dias_tto_admido_ftto)
 
@@ -1202,7 +1261,9 @@ final_df_cleaned <- data.frame(codigo_paciente = participantes$codigo_paciente,
                                variacion_lesion_post = fin_tto$cambio_lesion,
                                variacion_lesion_post2 = fin_tto$cambio_lesion2,
                                adenopatia_fin_tto = fin_tto$linfa_regional_ftto,
-                               infeccion_concom_fintto = fin_tto$infeccion_concom_ftto,
+                               linfadenop_before_after_tto = fin_tto$linfadenop_before_after_tto,
+                               infeccion_concom_ftto = fin_tto$infeccion_concom_ftto,
+                               infeccion_concom_any_moment = fin_tto$infeccion_concomitante,
                                estado_fin_tto = fin_tto$estado_fin_tto_ftto,
                                acude_sem8 = sem_8$visita_eval_realizada_s8,
                                dias_sem8 = sem_8$dias_transcurridos_s8,
