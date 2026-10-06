@@ -39,8 +39,10 @@ correr_sl <- function(df, vars, etiqueta) {
   X <- as.data.frame(stats::model.matrix(stats::as.formula(paste("~", paste(vars, collapse = "+"))), df)[, -1, drop = FALSE])
   Y <- df$fail01
   set.seed(SEED)
+  ## method.AUC: los pesos del ensamble se eligen MAXIMIZANDO AUC (no error
+  ## cuadratico/NNLS por defecto) -> comparable con como lo evaluamos (AUC).
   cvsl <- CV.SuperLearner(Y = Y, X = X, family = binomial(),
-                          SL.library = biblioteca,
+                          SL.library = biblioteca, method = "method.AUC",
                           cvControl = list(V = 10), verbose = FALSE)
   ## AUC OOS del SuperLearner y de cada aprendiz (de las predicciones CV)
   auc <- function(p) as.numeric(pROC::auc(pROC::roc(Y, p, quiet = TRUE)))
