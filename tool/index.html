@@ -1,4 +1,166 @@
-{
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CL Therapeutic Failure Risk | Riesgo de Falla Terapéutica (Leishmaniasis Cutánea)</title>
+<style>
+:root{--navy:#0F1C3F;--teal:#0C7EA3;--teal2:#2A6F97;--bg:#f4f7fa;--card:#fff;--line:#e2e8f0;--text:#1a2230;--muted:#5a6b7b;--danger:#c0392b;--warn:#d98c00;--ok:#1e8e5a;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:15px}
+.wrap{max-width:900px;margin:0 auto;padding:18px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.brand h1{font-size:19px;color:var(--navy);line-height:1.2}
+.brand p{font-size:12px;color:var(--muted)}
+.lang button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 10px;cursor:pointer;font-weight:600;color:var(--teal2)}
+.lang button.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:14px 0;box-shadow:0 1px 3px rgba(15,28,63,.05)}
+.card h2{font-size:15px;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.step{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;font-size:12px;align-items:center;justify-content:center;flex:0 0 auto}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:620px){.row{grid-template-columns:1fr}}
+label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.hint{font-weight:400;color:var(--muted);font-size:12px}
+input[type=number],input[type=text],select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fff}
+.field{margin-bottom:12px}
+.inline{display:flex;gap:6px}
+.inline input{flex:2}.inline select{flex:1.3}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:7px 14px;cursor:pointer;font-weight:600;color:var(--muted)}
+.seg button.active{background:var(--teal);color:#fff}
+.check{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin:8px 0}
+.check input{margin-top:3px}
+.btn{background:var(--teal);color:#fff;border:0;border-radius:9px;padding:12px 20px;font-size:15px;font-weight:700;cursor:pointer}
+.btn:disabled{background:#9fb6c4;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--teal2);border:1px solid var(--line)}
+.tip{cursor:help;color:var(--teal);font-weight:700;border:1px solid var(--teal);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;margin-left:5px}
+.result{display:none}
+.gauge{font-size:40px;font-weight:800;text-align:center;margin:6px 0}
+.models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:620px){.models-grid{grid-template-columns:1fr}}
+.mcard{border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.mcard .p{font-size:26px;font-weight:800}.mcard .n{font-size:12px;color:var(--muted)}
+.bar{height:9px;border-radius:5px;background:#eef2f6;overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--navy))}
+.contrib{font-size:13px;margin:4px 0;display:flex;justify-content:space-between;gap:10px}
+.contrib .up{color:var(--danger);font-weight:700}.contrib .down{color:var(--ok);font-weight:700}
+.note{font-size:12.5px;color:var(--muted);background:#f0f6fa;border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:9px 12px;margin:10px 0}
+.disc{font-size:11.5px;color:var(--muted);text-align:center;margin:18px 0 8px}
+.err{color:var(--danger);font-size:12.5px;margin-top:6px;display:none}
+.photoprev{max-width:120px;border-radius:8px;border:1px solid var(--line);margin-top:6px;display:none}
+h3.sub{font-size:13px;color:var(--teal2);margin:12px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1 data-i="title"></h1>
+      <p data-i="subtitle"></p>
+    </div>
+    <div class="lang">
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </header>
+
+  <!-- STEP 1: patient + consent -->
+  <div class="card">
+    <h2><span class="step">1</span><span data-i="s1_title"></span></h2>
+    <label class="check"><input type="checkbox" id="confirmPatient"><span data-i="s1_confirm"></span></label>
+    <div class="field" style="margin-top:10px">
+      <label data-i="s1_auth"></label>
+      <div class="seg" id="authSeg">
+        <button class="active" data-v="unknown" data-i="opt_unknown"></button>
+        <button data-v="yes" data-i="opt_yes"></button>
+        <button data-v="no" data-i="opt_no"></button>
+      </div>
+    </div>
+    <div class="field">
+      <label data-i="s1_photo"></label>
+      <input type="file" id="consentPhoto" accept="image/*">
+      <img id="photoPrev" class="photoprev">
+      <div class="hint" data-i="s1_photo_hint"></div>
+    </div>
+  </div>
+
+  <!-- STEP 2: form -->
+  <div class="card">
+    <h2><span class="step">2</span><span data-i="s2_title"></span></h2>
+    <div class="field">
+      <label data-i="s2_mode"></label>
+      <div class="seg" id="modeSeg">
+        <button class="active" data-v="pre" data-i="mode_pre"></button>
+        <button data-v="post" data-i="mode_post"></button>
+      </div>
+      <div class="hint" data-i="s2_mode_hint" style="margin-top:5px"></div>
+    </div>
+
+    <h3 class="sub" data-i="h_clinical"></h3>
+    <div class="row">
+      <div class="field"><label data-i="f_age"></label><input type="number" id="edad" min="0" max="110" step="1"></div>
+      <div class="field"><label data-i="f_sex"></label>
+        <select id="sexo"><option value="Male" data-i="sex_m"></option><option value="Female" data-i="sex_f"></option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label>&nbsp;<span data-i="f_adeno"></span><span class="tip" data-tip="t_adeno">i</span></label>
+        <select id="adeno"><option value="No" data-i="opt_no"></option><option value="Yes" data-i="opt_yes"></option></select></div>
+      <div class="field" id="wrap_infpre"><label><span data-i="f_infpre"></span><span class="tip" data-tip="t_inf">i</span></label>
+        <select id="infpre"><option value="No" data-i="opt_no"></option><option value="Yes" data-i="opt_yes"></option></select></div>
+      <div class="field" id="wrap_infpost" style="display:none"><label><span data-i="f_infpost"></span><span class="tip" data-tip="t_inf">i</span></label>
+        <select id="infpost"><option value="No" data-i="opt_no"></option><option value="Yes" data-i="opt_yes"></option></select></div>
+    </div>
+
+    <!-- PRE hemogram -->
+    <div id="preBlock">
+      <h3 class="sub" data-i="h_hemo_pre"></h3>
+      <div class="row">
+        <div class="field"><label><span data-i="f_ig"></span><span class="tip" data-tip="t_ig">i</span></label>
+          <div class="inline"><input type="number" id="ig" min="0" step="0.01"><select id="ig_u" class="unitsel"></select></div></div>
+        <div class="field"><label><span data-i="f_plt"></span><span class="tip" data-tip="t_plt">i</span></label>
+          <div class="inline"><input type="number" id="plt" min="0" step="1"><select id="plt_u" class="unitsel"></select></div></div>
+      </div>
+    </div>
+
+    <!-- POST hemogram -->
+    <div id="postBlock" style="display:none">
+      <h3 class="sub" data-i="h_hemo_post"></h3>
+      <div class="row">
+        <div class="field"><label><span data-i="f_eos"></span><span class="tip" data-tip="t_eos">i</span></label>
+          <input type="number" id="eospct" min="0" max="100" step="0.1"></div>
+        <div class="field"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label><span data-i="f_monopre"></span><span class="tip" data-tip="t_mono">i</span></label>
+          <div class="inline"><input type="number" id="monopre" min="0" step="0.01"><select id="monopre_u" class="unitsel"></select></div></div>
+        <div class="field"><label><span data-i="f_monopost"></span><span class="tip" data-tip="t_mono">i</span></label>
+          <div class="inline"><input type="number" id="monopost" min="0" step="0.01"><select id="monopost_u" class="unitsel"></select></div></div>
+      </div>
+    </div>
+
+    <div class="err" id="formErr"></div>
+    <div style="margin-top:14px;display:flex;gap:10px">
+      <button class="btn" id="calcBtn" onclick="calcular()" data-i="btn_calc"></button>
+      <button class="btn sec" onclick="limpiar()" data-i="btn_clear"></button>
+    </div>
+  </div>
+
+  <!-- STEP 3: result -->
+  <div class="card result" id="resultCard">
+    <h2><span class="step">3</span><span data-i="s3_title"></span></h2>
+    <div class="note" data-i="s3_defn"></div>
+    <div class="gauge" id="mainProb">—</div>
+    <div style="text-align:center;color:var(--muted);font-size:13px" data-i="s3_main_label"></div>
+    <div class="models-grid" id="modelsGrid"></div>
+    <h3 class="sub" data-i="s3_drivers"></h3>
+    <div id="drivers"></div>
+    <div class="note" id="perfNote"></div>
+  </div>
+
+  <p class="disc" data-i="disclaimer"></p>
+</div>
+
+<script id="MODELS" type="application/json">{
   "meta": {
     "outcome": "Therapeutic failure in cutaneous leishmaniasis (final outcome, assessed up to week 26)",
     "note": "Models trained on the full dataset. Honest out-of-sample discrimination (repeated CV): PRE ROC-AUC ~0.75, EoTx ~0.70.",
@@ -136,3 +298,180 @@
     "auc_resubstitution": 0.765
   }
 }
+</script>
+<script>
+const MODELS = JSON.parse(document.getElementById('MODELS').textContent);
+
+/* ---------- i18n ---------- */
+const I = {
+ es:{title:"Riesgo de falla terapéutica · Leishmaniasis cutánea",
+   subtitle:"Herramienta de apoyo para seguimiento de pacientes en las Américas · basada en parámetros del hemograma",
+   s1_title:"Paciente y consentimiento",
+   s1_confirm:"Confirmo que los datos ingresados corresponden a un paciente real bajo mi cuidado.",
+   s1_auth:"¿El paciente autoriza el uso de sus datos en estudios futuros?",
+   opt_unknown:"Sin especificar",opt_yes:"Sí",opt_no:"No",
+   s1_photo:"Consentimiento por foto (opcional, sugerido)",
+   s1_photo_hint:"La imagen se queda en este dispositivo; no se envía a ningún servidor.",
+   s2_title:"Datos del paciente",
+   s2_mode:"¿Qué datos tienes disponibles?",
+   mode_pre:"Pre-tratamiento",mode_post:"Fin de tratamiento",
+   s2_mode_hint:"Puedes llenar solo datos pre, o datos de fin de tratamiento. Los campos que falten se completan con el valor típico de nuestra cohorte.",
+   h_clinical:"Clínicas",h_hemo_pre:"Hemograma pre-tratamiento",h_hemo_post:"Hemograma fin de tratamiento",
+   f_age:"Edad (años)",f_sex:"Sexo",sex_m:"Masculino",sex_f:"Femenino",
+   f_adeno:"Adenopatía regional (basal)",f_infpre:"Infección concomitante (basal)",f_infpost:"Infección concomitante (fin de tto)",
+   f_ig:"Granulocitos inmaduros (IG)",f_plt:"Plaquetas",
+   f_eos:"Eosinófilos (% del total) al fin de tratamiento",
+   f_monopre:"Monocitos pre-tratamiento",f_monopost:"Monocitos fin de tratamiento",
+   btn_calc:"Calcular riesgo",btn_clear:"Limpiar",
+   s3_title:"Resultado",
+   s3_defn:"Falla terapéutica: ausencia de cura (sin reepitelización completa de todas las lesiones, al día 90 o más de seguimiento), según la definición del estudio.",
+   s3_main_label:"Probabilidad de falla terapéutica (promedio de los modelos)",
+   s3_drivers:"Variables que más pesan en este paciente",
+   btn_calc2:"Calcular",
+   disclaimer:"Herramienta de investigación de apoyo a la decisión. No reemplaza el juicio clínico. Desarrollada por CIDEIM / Universidad del Valle / Universidad Icesi.",
+   needconfirm:"Debes confirmar que los datos corresponden a un paciente antes de calcular.",
+   t_adeno:"Presencia de adenopatía (ganglios regionales palpables) en la evaluación basal.",
+   t_inf:"Infección concomitante (en la lesión o sistémica) documentada.",
+   t_ig:"Recuento de granulocitos INMADUROS (IG). Valores bajos (≤0.01 ×10³/µL) se asociaron a mayor falla.",
+   t_plt:"Recuento de plaquetas. Valores bajos se asociaron a mayor falla.",
+   t_eos:"Porcentaje de eosinófilos sobre el total de leucocitos, medido al fin de tratamiento. ≥14% se asoció a mayor falla.",
+   t_mono:"Recuento absoluto de monocitos. Se usa la razón fin-de-tto / pre (un aumento ≥1.07 se asoció a mayor falla).",
+   drivers_up:"aumenta el riesgo",drivers_down:"disminuye el riesgo",
+   perf:"Desempeño validado fuera de muestra (validación cruzada repetida): ROC-AUC ≈ %A% para este escenario. El modelo se entrenó con toda la cohorte."},
+ en:{title:"Therapeutic failure risk · Cutaneous leishmaniasis",
+   subtitle:"Decision-support tool for patient follow-up in the Americas · based on blood count parameters",
+   s1_title:"Patient and consent",
+   s1_confirm:"I confirm the entered data correspond to a real patient under my care.",
+   s1_auth:"Does the patient authorize the use of their data in future studies?",
+   opt_unknown:"Not specified",opt_yes:"Yes",opt_no:"No",
+   s1_photo:"Photo consent (optional, suggested)",
+   s1_photo_hint:"The image stays on this device; it is not sent to any server.",
+   s2_title:"Patient data",
+   s2_mode:"Which data do you have?",
+   mode_pre:"Pre-treatment",mode_post:"End of treatment",
+   s2_mode_hint:"You may fill only pre-treatment data, or end-of-treatment data. Missing fields are completed with the typical value from our cohort.",
+   h_clinical:"Clinical",h_hemo_pre:"Pre-treatment blood count",h_hemo_post:"End-of-treatment blood count",
+   f_age:"Age (years)",f_sex:"Sex",sex_m:"Male",sex_f:"Female",
+   f_adeno:"Regional lymphadenopathy (baseline)",f_infpre:"Concomitant infection (baseline)",f_infpost:"Concomitant infection (end of tx)",
+   f_ig:"Immature granulocytes (IG)",f_plt:"Platelets",
+   f_eos:"Eosinophils (% of total) at end of treatment",
+   f_monopre:"Monocytes pre-treatment",f_monopost:"Monocytes end of treatment",
+   btn_calc:"Compute risk",btn_clear:"Clear",
+   s3_title:"Result",
+   s3_defn:"Therapeutic failure: absence of cure (no complete re-epithelialization of all lesions, at day 90 or later of follow-up), per the study definition.",
+   s3_main_label:"Probability of therapeutic failure (average of models)",
+   s3_drivers:"Variables weighing most for this patient",
+   disclaimer:"Research decision-support tool. It does not replace clinical judgment. Developed by CIDEIM / Universidad del Valle / Universidad Icesi.",
+   needconfirm:"You must confirm the data correspond to a patient before computing.",
+   t_adeno:"Presence of regional lymphadenopathy (palpable nodes) at baseline.",
+   t_inf:"Documented concomitant infection (in the lesion or systemic).",
+   t_ig:"IMMATURE granulocyte (IG) count. Low values (≤0.01 ×10³/µL) were associated with higher failure.",
+   t_plt:"Platelet count. Low values were associated with higher failure.",
+   t_eos:"Percentage of eosinophils over total leukocytes at end of treatment. ≥14% was associated with higher failure.",
+   t_mono:"Absolute monocyte count. The end-of-tx / pre ratio is used (an increase ≥1.07 was associated with higher failure).",
+   drivers_up:"increases risk",drivers_down:"decreases risk",
+   perf:"Out-of-sample validated performance (repeated cross-validation): ROC-AUC ≈ %A% for this scenario. The model was trained on the full cohort."}
+};
+let lang="es", mode="pre", auth="unknown";
+const UNITS = [{v:"k",es:"×10³/µL (10⁹/L)",en:"×10³/µL (10⁹/L)",f:1},{v:"u",es:"células/µL (/mm³)",en:"cells/µL (/mm³)",f:0.001}];
+
+function setLang(l){lang=l;document.documentElement.lang=l;
+  document.getElementById('btn-es').classList.toggle('active',l==='es');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-i]').forEach(e=>{const k=e.getAttribute('data-i');if(I[l][k]!=null)e.textContent=I[l][k];});
+  document.querySelectorAll('.unitsel').forEach(sel=>{const cur=sel.value;sel.innerHTML=UNITS.map(u=>`<option value="${u.v}">${u[l]}</option>`).join('');if(cur)sel.value=cur;});
+}
+function tip(el){const k=el.getAttribute('data-tip');alert(I[lang][k]);}
+document.querySelectorAll('.tip').forEach(t=>t.onclick=()=>tip(t));
+
+/* segmented controls */
+document.querySelectorAll('#authSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#authSeg button').forEach(x=>x.classList.remove('active'));b.classList.add('active');auth=b.getAttribute('data-v');});
+document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#modeSeg button').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.getAttribute('data-v');toggleMode();});
+function toggleMode(){
+  const pre=mode==='pre';
+  document.getElementById('preBlock').style.display=pre?'':'none';
+  document.getElementById('postBlock').style.display=pre?'none':'';
+  document.getElementById('wrap_infpre').style.display=pre?'':'none';
+  document.getElementById('wrap_infpost').style.display=pre?'none':'';
+}
+document.getElementById('consentPhoto').onchange=function(){const f=this.files[0];if(!f)return;const img=document.getElementById('photoPrev');img.src=URL.createObjectURL(f);img.style.display='block';};
+
+/* ---------- model math ---------- */
+const sig=x=>1/(1+Math.exp(-x));
+function toK(id){const v=parseFloat(document.getElementById(id).value);const u=document.getElementById(id+'_u');const f=u?UNITS.find(x=>x.v===u.value).f:1;return isNaN(v)?null:v*f;}
+function num(id){const v=parseFloat(document.getElementById(id).value);return isNaN(v)?null:v;}
+
+function featureVector(scn){
+  // returns {featName: value} in model's native feature space (with imputation of missing)
+  const m=MODELS[scn], imp=m.imputation, fv={};
+  const raw={
+    edad:num('edad'),
+    sexo:document.getElementById('sexo').value,
+    adenopatia_evalbas:document.getElementById('adeno').value,
+    infeccion_concom_evalbas:document.getElementById('infpre').value,
+    infeccion_concom_ftto:document.getElementById('infpost').value,
+    Granulocitos_pre:toK('ig'),
+    Plaquetas_pre:toK('plt'),
+    pct_eosino_post:num('eospct'),
+    mono_ratio:(toK('monopost')!=null&&toK('monopre')!=null&&toK('monopre')>0)?toK('monopost')/toK('monopre'):null
+  };
+  // impute missing using training stats
+  for(const k in imp){ if(raw[k]==null||raw[k]===''||(typeof raw[k]==='number'&&isNaN(raw[k]))) raw[k]=imp[k].valor; }
+  // one-hot per model features
+  m.features.forEach(f=>{
+    if(f==='edad')fv[f]=raw.edad;
+    else if(f==='sexoMale')fv[f]=raw.sexo==='Male'?1:0;
+    else if(f==='adenopatia_evalbasYes')fv[f]=raw.adenopatia_evalbas==='Yes'?1:0;
+    else if(f==='infeccion_concom_evalbasYes')fv[f]=raw.infeccion_concom_evalbas==='Yes'?1:0;
+    else if(f==='infeccion_concom_fttoYes')fv[f]=raw.infeccion_concom_ftto==='Yes'?1:0;
+    else fv[f]=raw[f];
+  });
+  return {fv,raw};
+}
+function predLogistic(m,fv){let z=m.logistic.intercept;m.features.forEach(f=>z+=m.logistic.coef[f]*fv[f]);return sig(z);}
+function predLasso(m,fv){let z=m.lasso.intercept;m.features.forEach(f=>z+=(m.lasso.coef[f]||0)*fv[f]);return sig(z);}
+function walkTree(node,fv,feats){if('leaf'in node)return node.leaf;const x=fv[node.split];const go=(x==null||isNaN(x))?node.missing:((x<node.split_condition)?node.yes:node.no);const child=node.children.find(c=>c.nodeid===go);return walkTree(child,fv,feats);}
+let _xgbCache={};
+function predXgb(m,fv){const key=m.features.join();if(!_xgbCache[key])_xgbCache[key]=JSON.parse(m.xgboost.trees);const b=m.xgboost.base_score;let s=Math.log(b/(1-b));_xgbCache[key].forEach(t=>{s+=walkTree(t,fv,m.features);});return sig(s);}
+
+function drivers(m,fv){ // logistic contribution relative to cohort mean
+  const arr=m.features.map(f=>({f,c:m.logistic.coef[f]*(fv[f]-m.logistic.means[f])}));
+  arr.sort((a,b)=>Math.abs(b.c)-Math.abs(a.c));
+  const names={edad:{es:'Edad',en:'Age'},sexoMale:{es:'Sexo masculino',en:'Male sex'},
+   adenopatia_evalbasYes:{es:'Adenopatía',en:'Lymphadenopathy'},
+   infeccion_concom_evalbasYes:{es:'Infección concomitante',en:'Concomitant infection'},
+   infeccion_concom_fttoYes:{es:'Infección concomitante (EoT)',en:'Concomitant infection (EoT)'},
+   Granulocitos_pre:{es:'Granulocitos inmaduros',en:'Immature granulocytes'},
+   Plaquetas_pre:{es:'Plaquetas',en:'Platelets'},
+   pct_eosino_post:{es:'Eosinófilos % (EoT)',en:'Eosinophils % (EoT)'},
+   mono_ratio:{es:'Razón de monocitos',en:'Monocyte ratio'}};
+  return arr.slice(0,4).map(x=>({name:names[x.f]?names[x.f][lang]:x.f,up:x.c>0}));
+}
+
+function calcular(){
+  const err=document.getElementById('formErr');err.style.display='none';
+  if(!document.getElementById('confirmPatient').checked){err.textContent=I[lang].needconfirm;err.style.display='block';return;}
+  const scn=mode==='pre'?'pre':'eotx';
+  const m=MODELS[scn];
+  const {fv}=featureVector(scn);
+  const pL=predLogistic(m,fv),pLa=predLasso(m,fv),pX=predXgb(m,fv);
+  const avg=(pL+pLa+pX)/3;
+  const pct=x=>(x*100).toFixed(1)+'%';
+  document.getElementById('mainProb').textContent=pct(avg);
+  document.getElementById('mainProb').style.color=avg>=0.3?'var(--danger)':avg>=0.15?'var(--warn)':'var(--ok)';
+  const grid=document.getElementById('modelsGrid');
+  const mk=(n,p)=>`<div class="mcard"><div class="n">${n}</div><div class="p">${pct(p)}</div><div class="bar"><i style="width:${Math.min(100,p*100)}%"></i></div></div>`;
+  grid.innerHTML=mk('Logistic',pL)+mk('LASSO',pLa)+mk('XGBoost',pX);
+  const dv=drivers(m,fv);
+  document.getElementById('drivers').innerHTML=dv.map(d=>`<div class="contrib"><span>${d.name}</span><span class="${d.up?'up':'down'}">${d.up?'▲ '+I[lang].drivers_up:'▼ '+I[lang].drivers_down}</span></div>`).join('');
+  const a=(scn==='pre'?MODELS.meta.cv_auc.pre:MODELS.meta.cv_auc.eotx);
+  document.getElementById('perfNote').textContent=I[lang].perf.replace('%A%',a.toFixed(2));
+  document.getElementById('resultCard').style.display='block';
+  document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
+}
+function limpiar(){document.querySelectorAll('input[type=number]').forEach(i=>i.value='');document.getElementById('resultCard').style.display='none';}
+
+setLang('es');toggleMode();
+</script>
+</body>
+</html>
