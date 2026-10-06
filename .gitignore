@@ -47,3 +47,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Analysis pipeline (regenerable) — added by reanalysis 2026-10
+data/derived/
+outputs/
+.Rhistory
+.RData
