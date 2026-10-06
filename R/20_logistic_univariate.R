@@ -75,6 +75,22 @@ tabla_univariada <- function(mids_obj, predictores, titulo) {
     modify_caption("Univariate logistic regression (OR, 95% CI) for therapeutic failure. Multiply-imputed, pooled.")
 }
 
+## Predictores POST (hemograma fin de tratamiento + variaciones post-pre).
+## La tesis encontro relevantes eosinofilos% POST y el cambio de monocitos.
+hemo_post <- c("Neutrofilos_post", "Linfocitos_post", "Monocitos_post", "Eosinofilos_post",
+               "Basofilos_post", "Granulocitos_post", "Globulos_rojos_post",
+               "Hemoglobina_post", "Hematocrito_post",
+               "pct_neutro_post", "pct_linfo_post", "pct_mono_post", "pct_eosino_post",
+               "pct_baso_post",
+               "i_neu_linfo_post", "i_eos_linfo_post", "i_mono_linfo_post",
+               "i_baso_linfo_post", "i_granu_linfo_post", "i_eos_mono_post",
+               "i_eos_neu_post", "i_eos_baso_post", "i_neu_mono_post",
+               "i_neu_baso_post", "i_baso_mono_post", "i_monoeosneu_lin_post")
+variaciones <- c("var_Neutrofilos", "var_Linfocitos", "var_Monocitos", "var_Eosinofilos",
+                 "var_Basofilos", "var_Granulocitos", "var_Globulos_rojos",
+                 "var_Hemoglobina", "var_Hematocrito",
+                 "var_i_neu_linfo", "var_i_mono_linfo", "var_i_granu_linfo")
+
 ## ---- Univariadas PRE -------------------------------------------------
 mids_pre <- readRDS(file.path(DERIVED_DIR, "mids_pre_full.rds"))
 message("[20] univariadas clinicas (PRE)...")
@@ -82,11 +98,21 @@ uni_clin <- tabla_univariada(mids_pre, clinicas, "Clinical and sociodemographic 
 message("[20] univariadas hemograma (PRE)...")
 uni_hemo <- tabla_univariada(mids_pre, hemo_pre, "Blood count parameters (pre-treatment)")
 
+## ---- Univariadas POST (fin de tratamiento + variacion) ---------------
+mids_post <- readRDS(file.path(DERIVED_DIR, "mids_post_full.rds"))
+message("[20] univariadas hemograma (POST)...")
+uni_hemo_post <- tabla_univariada(mids_post, hemo_post, "Blood count parameters (end of treatment)")
+message("[20] univariadas variacion (POST-PRE)...")
+uni_var <- tabla_univariada(mids_post, variaciones, "Blood count variation (end of treatment - pre)")
+
 ## ---- Exportar --------------------------------------------------------
 dest <- out_dir(paso)
-gt::gtsave(as_gt(uni_clin), file.path(dest, "univariate_OR_clinical.html"))
-gt::gtsave(as_gt(uni_hemo), file.path(dest, "univariate_OR_hemogram_pre.html"))
-saveRDS(list(clinical = uni_clin, hemogram_pre = uni_hemo),
+gt::gtsave(as_gt(uni_clin),      file.path(dest, "univariate_OR_clinical.html"))
+gt::gtsave(as_gt(uni_hemo),      file.path(dest, "univariate_OR_hemogram_pre.html"))
+gt::gtsave(as_gt(uni_hemo_post), file.path(dest, "univariate_OR_hemogram_post.html"))
+gt::gtsave(as_gt(uni_var),       file.path(dest, "univariate_OR_variation.html"))
+saveRDS(list(clinical = uni_clin, hemogram_pre = uni_hemo,
+             hemogram_post = uni_hemo_post, variation = uni_var),
         file.path(dest, "univariate_OR.rds"))
 
 ## ---- Resumen en consola: cuales cruzan p<0.05 ------------------------
@@ -99,4 +125,6 @@ resumen <- function(tbl, etiqueta) {
 }
 resumen(uni_clin, "Clinicas")
 resumen(uni_hemo, "Hemograma pre")
+resumen(uni_hemo_post, "Hemograma post")
+resumen(uni_var, "Variacion (post-pre)")
 message("[20] DONE. Tablas en ", dest)
