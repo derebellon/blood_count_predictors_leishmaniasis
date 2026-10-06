@@ -49,9 +49,14 @@ agregar_derivadas <- function(df, sufijo) {
   df[[paste0("i_mono_linfo_",  sufijo)]] <- g("Monocitos")   / g("Linfocitos")
   df[[paste0("i_baso_linfo_",  sufijo)]] <- g("Basofilos")   / g("Linfocitos")
   df[[paste0("i_granu_linfo_", sufijo)]] <- g("Granulocitos")/ g("Linfocitos")   # IG / linfo (seguro: linfo>0)
-  # NOTA: se OMITEN i_neu_granu, i_eos_granu, i_baso_granu (dividir por IG) porque
-  # los granulocitos inmaduros son 0 en ~9% -> ratio indefinido (Inf). IG se conserva
-  # como conteo y como IG/linfocitos. Todos los demas denominadores nunca son 0.
+  # Ratios que dividen por IG: IG es 0 en ~9% -> uso el piso de 0.01 (limite inferior
+  # de deteccion, approach de David) para evitar dividir por cero. SOLO para ML
+  # (RF/XGB/LASSO); el SHAP decidira si aportan o son artefacto. NO entran a la
+  # inferencia (logistica/Poisson), donde los valores floored distorsionan.
+  ig_floor <- pmax(g("Granulocitos"), 0.01)
+  df[[paste0("i_neu_granu_",   sufijo)]] <- g("Neutrofilos") / ig_floor
+  df[[paste0("i_eos_granu_",   sufijo)]] <- g("Eosinofilos") / ig_floor
+  df[[paste0("i_baso_granu_",  sufijo)]] <- g("Basofilos")   / ig_floor
   df[[paste0("i_eos_mono_",    sufijo)]] <- g("Eosinofilos") / g("Monocitos")
   df[[paste0("i_eos_neu_",     sufijo)]] <- g("Eosinofilos") / g("Neutrofilos")
   df[[paste0("i_eos_baso_",    sufijo)]] <- g("Eosinofilos") / g("Basofilos")
