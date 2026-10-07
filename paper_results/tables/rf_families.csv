@@ -1,0 +1,7 @@
+"Scenario","ROC_AUC","PR_AUC","Top5_importance"
+"PRE counts only",0.612,0.262,"Hematocrito_pre; Hemoglobina_pre; Globulos_rojos_pre; edad; Eosinofilos_pre"
+"PRE proportions only",0.559,0.233,"pct_neutro_pre; pct_eosino_pre; edad; pct_linfo_pre; sexo"
+"PRE ratios only",0.515,0.186,"i_neu_linfo_pre; i_eos_granu_pre; i_eos_linfo_pre; i_eos_baso_pre; i_eos_neu_pre"
+"EoTx counts only",0.587,0.275,"Hematocrito_post; Hemoglobina_post; Neutrofilos_post; Globulos_rojos_post; edad"
+"EoTx proportions only",0.566,0.277,"pct_neutro_post; edad; pct_linfo_post; pct_eosino_post; pct_baso_post"
+"EoTx ratios only",0.531,0.253,"edad; i_eos_granu_post; i_eos_neu_post; i_monoeosneu_lin_post; i_neu_linfo_post"

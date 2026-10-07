@@ -50,24 +50,26 @@ exportar_escenario <- function(df, vars, etiqueta) {
   form <- stats::as.formula(paste("~", paste(vars, collapse = " + ")))
   X <- stats::model.matrix(form, d)[, -1, drop = FALSE]
   y <- d$fail01
-  w <- ifelse(y == 1, sum(y == 0) / sum(y == 1), 1)
+  ## SIN pesos de clase: para la herramienta queremos PROBABILIDADES CALIBRADAS
+  ## a la prevalencia real (15.5%), no infladas. La discriminacion (AUC) es ~igual.
+  base <- mean(y)
 
-  ## --- Logistica (final, con pesos de clase) ---
-  glm_fit <- suppressWarnings(glm(y ~ ., data = data.frame(y = y, X), family = binomial, weights = w))
+  ## --- Logistica (final, calibrada) ---
+  glm_fit <- suppressWarnings(glm(y ~ ., data = data.frame(y = y, X), family = binomial))
   glm_coef <- coef(glm_fit)
   col_means <- colMeans(X)                       # para la contribucion por variable
 
   ## --- LASSO ---
-  la <- glmnet::cv.glmnet(X, y, family = "binomial", weights = w, alpha = 1, nfolds = 10, type.measure = "auc")
+  la <- glmnet::cv.glmnet(X, y, family = "binomial", alpha = 1, nfolds = 10, type.measure = "auc")
   la_coef <- as.matrix(coef(la, s = "lambda.min"))[, 1]
 
-  ## --- XGBoost (arboles -> JSON) ---
+  ## --- XGBoost (arboles -> UN solo JSON array) ---
   xgb <- xgboost::xgb.train(
     params = list(objective = "binary:logistic", eval_metric = "auc", max_depth = 2,
                   eta = 0.05, subsample = 0.8, colsample_bytree = 0.6, min_child_weight = 5,
-                  lambda = 1, alpha = 0.5, base_score = 0.5),
-    data = xgboost::xgb.DMatrix(X, label = y, weight = w), nrounds = 80, verbose = 0)
-  xgb_json <- xgboost::xgb.dump(xgb, dump_format = "json")
+                  lambda = 1, alpha = 0.5, base_score = base),
+    data = xgboost::xgb.DMatrix(X, label = y), nrounds = 80, verbose = 0)
+  xgb_json <- paste(xgboost::xgb.dump(xgb, dump_format = "json"), collapse = "")
 
   ## --- Validacion en nuestros pacientes (resustitucion, referencia) ---
   p_glm <- predict(glm_fit, type = "response")
@@ -80,7 +82,7 @@ exportar_escenario <- function(df, vars, etiqueta) {
                     means = as.list(col_means)),
     lasso = list(intercept = unname(la_coef["(Intercept)"]),
                  coef = as.list(la_coef[setdiff(names(la_coef), "(Intercept)")])),
-    xgboost = list(trees = xgb_json, base_score = 0.5),
+    xgboost = list(trees = xgb_json, base_score = base),
     imputation = imp,
     auc_resubstitution = round(auc_glm, 3)
   )
