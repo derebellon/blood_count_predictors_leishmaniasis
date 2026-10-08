@@ -1,0 +1,4 @@
+"Stratum","Score","N","Failures","Observed failure % (95% CI)","Cross-validated failure %"
+"Low","0-2",33,0,"0.0 (0.0-10.4)","0.0"
+"Intermediate","3-5",109,12,"11.0 (6.4-18.3)","10.6"
+"High","6+",58,19,"32.8 (22.1-45.6)","27.4"

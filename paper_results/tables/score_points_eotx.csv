@@ -1,7 +1,9 @@
 "Variable","Points"
-"Male sex",1
-"Age <= 28 years",1
-"Regional lymphadenopathy",1
-"Concomitant infection (EoTx)",2
-"Eosinophils >= 14%",1
-"Monocyte ratio (EoTx/pre) >= 1.07",1
+"Age < 25 years",2
+"Age 25-39 years",1
+"Age >= 40 years (reference)",0
+"Male sex",2
+"Regional lymphadenopathy",2
+"Concomitant infection (EoTx)",3
+"Eosinophils >= 14%",2
+"Monocyte ratio (EoTx/pre) >= 1.07",2
