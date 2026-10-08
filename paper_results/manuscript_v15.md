@@ -120,7 +120,7 @@ When analysing cell population ratios, and their variations between Pre-Tx and E
 
 Blood count parameters were screened by their bivariate association with therapeutic outcome. Seven blood count parameters that showed a statistically significant difference between cures and TF (*p*-value \< 0.1 and/or *q*-value ≤ 0.3) were selected for construction of the multivariate models ([Table 2]{.mark}).
 
-**Table 2. Univariate associations with therapeutic failure.** Odds ratios (logistic regression) and relative risks (robust Poisson), per 1-SD increase for continuous variables; multiple imputation, Rubin-pooled. *Underdose: no failures observed, relative risk not estimable.
+**Table 2. Univariate associations of clinical and sociodemographic variables with therapeutic failure.** OR, odds ratio (logistic regression); RR, relative risk (robust Poisson). For continuous variables (age, body mass index) both ratios are per 1-SD increase (multiplicative change in odds/risk per 1 standard deviation); e.g. each 1-SD increase in age was associated with a 29% lower risk (RR 0.71). *Underdose: no failures observed, relative risk not estimable.
 
 | Clinical and sociodemographic variables | OR | 95% CI | RR (95% CI) | p-value |
 |---|---|---|---|---|
