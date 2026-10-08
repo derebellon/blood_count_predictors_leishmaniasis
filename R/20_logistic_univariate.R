@@ -23,6 +23,29 @@ suppressPackageStartupMessages({
 
 paso <- "20_logistic_univariate"
 
+## ---- Normality pre-check (Shapiro-Wilk) ------------------------------
+## Rationale: the blood-count distributions are skewed, so group comparisons
+## use non-parametric tests (Wilcoxon-Mann-Whitney). We document that choice
+## by formally testing normality of the continuous variables (one completed
+## imputation is adequate for this descriptive check).
+dest_sw <- out_dir(paso)                                         # ensure this step's output folder exists
+cont_vars <- c("edad", "Neutrofilos_pre", "Linfocitos_pre", "Monocitos_pre",   # continuous variables to test
+               "Eosinofilos_pre", "Basofilos_pre", "Granulocitos_pre",
+               "Globulos_rojos_pre", "Hemoglobina_pre", "Hematocrito_pre", "Plaquetas_pre")
+d_sw <- mice::complete(readRDS(file.path(DERIVED_DIR, "mids_pre_full.rds")), 1) # one completed dataset
+cont_vars <- cont_vars[cont_vars %in% names(d_sw)]               # keep variables actually present
+shapiro_tab <- do.call(rbind, lapply(cont_vars, function(v) {    # run Shapiro-Wilk per variable
+  x <- d_sw[[v]]; x <- x[is.finite(x)]                           # drop non-finite values
+  tt <- tryCatch(shapiro.test(x), error = function(e) NULL)      # guard degenerate columns
+  if (is.null(tt)) return(NULL)                                  # skip if it cannot run
+  data.frame(variable = v, W = round(unname(tt$statistic), 3),   # W statistic
+             p_value = signif(tt$p.value, 3),                    # p-value
+             normal = ifelse(tt$p.value > 0.05, "yes", "no"))    # p>0.05 => compatible with normality
+}))
+write.csv(shapiro_tab, file.path(dest_sw, "shapiro_continuous.csv"), row.names = FALSE)  # save normality table
+message("[20] Shapiro-Wilk: ", sum(shapiro_tab$normal == "no"), "/", nrow(shapiro_tab),
+        " continuous variables non-normal -> non-parametric (Wilcoxon) tests used")     # verdict to the log
+
 ## ---- Listas de predictores (INFERENCIA, sin ratios floored X/IG) -----
 clinicas <- c("edad", "sexo", "etnia", "tiempo_evolucion_dicotomica", "imc",
               "lesiones_categorica", "tipo_lesion_eval_base_corta",

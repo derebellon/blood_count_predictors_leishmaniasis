@@ -46,7 +46,12 @@ metricas_full <- function(y, p, thr) {
   f1   <- if (!is.na(ppv) && !is.na(sens) && (ppv + sens) > 0) 2 * ppv * sens / (ppv + sens) else NA_real_
   acc  <- (tp + tn) / length(y)
   brier <- mean((p - y)^2)
-  c(Accuracy = acc, ROC_AUC = roc_auc, Sens_fail = sens, Spec_fail = spec,
+  pr_auc <- tryCatch({                                     # area under the precision-recall curve (failure = minority class)
+    pos <- p[y == 1]; neg <- p[y == 0]                     # predicted probs among failures vs cures
+    if (length(pos) == 0 || length(neg) == 0) NA_real_     # undefined if a class is absent in this fold
+    else PRROC::pr.curve(scores.class0 = pos, scores.class1 = neg)$auc.integral  # integral PR-AUC
+  }, error = function(e) NA_real_)
+  c(Accuracy = acc, ROC_AUC = roc_auc, PR_AUC = pr_auc, Sens_fail = sens, Spec_fail = spec,
     PPV = ppv, NPV = npv, F1 = f1, Brier = brier)
 }
 
@@ -110,6 +115,7 @@ eval_base <- function(df, vars, fit_fun, pred_fun, k = CV_FOLDS, reps = REPS, se
     ROC_AUC   = mean(M[,"ROC_AUC"],   na.rm=TRUE),
     AUC_lo    = as.numeric(quantile(M[,"ROC_AUC"], .025, na.rm=TRUE)),
     AUC_hi    = as.numeric(quantile(M[,"ROC_AUC"], .975, na.rm=TRUE)),
+    PR_AUC    = mean(M[,"PR_AUC"],    na.rm=TRUE),
     Sens_fail = mean(M[,"Sens_fail"], na.rm=TRUE),
     Spec_fail = mean(M[,"Spec_fail"], na.rm=TRUE),
     PPV       = mean(M[,"PPV"],       na.rm=TRUE),
@@ -152,6 +158,7 @@ eval_sl <- function(df, vars) {
     Accuracy  = punto["Accuracy"], ROC_AUC = punto["ROC_AUC"],
     AUC_lo    = as.numeric(quantile(bb[,"ROC_AUC"], .025, na.rm=TRUE)),
     AUC_hi    = as.numeric(quantile(bb[,"ROC_AUC"], .975, na.rm=TRUE)),
+    PR_AUC    = punto["PR_AUC"],
     Sens_fail = punto["Sens_fail"], Spec_fail = punto["Spec_fail"],
     PPV = punto["PPV"], NPV = punto["NPV"], F1 = punto["F1"], Brier = punto["Brier"]
   )

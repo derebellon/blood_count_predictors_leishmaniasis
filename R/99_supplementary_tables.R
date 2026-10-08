@@ -48,10 +48,10 @@ lab2<-list(
 tb2<-tryCatch(as.character(gtsummary::as_kable(
   gtsummary::tbl_summary(s2df,by=Outcome,missing="no",label=lab2,
     statistic=list(gtsummary::all_continuous()~"{median} ({p25}, {p75})")) |>
-    gtsummary::add_overall() |> gtsummary::add_p(), format="pipe")),
+    gtsummary::add_overall() |> gtsummary::add_p() |> gtsummary::add_q(method="fdr"), format="pipe")),  # add_q() = FDR (Benjamini-Hochberg) q-values for the multiple blood-count comparisons
   error=function(e) paste("(S2 error:",conditionMessage(e),")"))
 writeLines(c("## Table S2. Blood count characteristics by therapeutic outcome\n",
-  "Median (IQR). Counts in x10^3 cells/uL unless stated. P-values by Wilcoxon rank-sum.\n",tb2),
+  "Median (IQR). Counts in x10^3 cells/uL unless stated. P-values by Wilcoxon rank-sum; q-values are Benjamini-Hochberg FDR-adjusted (the blood-count selection used p < 0.1 and/or q <= 0.3).\n",tb2),
   file.path(dest,"S2.md"))
 message("[99] S2 ok")
 

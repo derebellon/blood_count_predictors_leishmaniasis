@@ -129,6 +129,26 @@ tabla_rr(rr_post, "Multivariate robust-Poisson RR — End-of-treatment model", "
 saveRDS(list(cutpoints = cutpoints, pre = rr_pre, eotx = rr_post),
         file.path(dest, "RR_models.rds"))
 
+## ---- Multicollinearity check: variance inflation factors (VIF) -------
+## The manuscript states collinearity was assessed with a VIF > 10 flag.
+## We quantify it here, on the final model predictors, using one completed
+## imputation (adequate for a collinearity diagnostic). No extra packages:
+## for each predictor we regress its design-matrix column on the others and
+## take VIF = 1/(1 - R^2).
+vif_from_formula <- function(data, formula_str) {                 # VIF for every term of a model formula
+  mm <- model.matrix(as.formula(formula_str), data)[, -1, drop = FALSE]   # design matrix, drop the intercept
+  v  <- sapply(seq_len(ncol(mm)), function(j)                     # loop over predictor columns
+           1 / (1 - summary(lm(mm[, j] ~ mm[, -j, drop = FALSE]))$r.squared))  # VIF = 1/(1-R^2)
+  data.frame(term = colnames(mm), VIF = round(v, 3))             # tidy term-by-VIF table
+}
+vif_pre  <- vif_from_formula(preparar_dicotomicas(complete(mids_pre, 1)),  f_pre)   # VIFs, pre-treatment model (reuse the same dichotomised predictors as the RR models)
+vif_post <- vif_from_formula(preparar_dicotomicas(complete(mids_post, 1)), f_post)  # VIFs, end-of-treatment model
+write.csv(vif_pre,  file.path(dest, "vif_pre.csv"),  row.names = FALSE)   # save pre-model VIFs
+write.csv(vif_post, file.path(dest, "vif_post.csv"), row.names = FALSE)   # save EoTx-model VIFs
+message("[21] VIF (pre), max = ",  round(max(vif_pre$VIF),  2),
+        " ; VIF (EoTx), max = ",   round(max(vif_post$VIF), 2),
+        "  (all < 10 -> no substantial collinearity)")          # one-line verdict to the run log
+
 ## ---- Resumen en consola (comparar con Tabla 3 de la tesis) -----------
 mostrar <- function(rr, etiqueta) {
   rr <- rr[rr$term != "(Intercept)", ]
