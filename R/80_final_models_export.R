@@ -17,8 +17,29 @@
 
 source("R/00_config.R")
 source("R/utils/ml_data.R")
-suppressPackageStartupMessages({ library(glmnet); library(xgboost); library(jsonlite); library(pROC) })
+suppressPackageStartupMessages({ library(glmnet); library(xgboost); library(jsonlite); library(pROC); library(ranger) })
 dest <- out_dir("80_final_models")
+
+## ---- random forest tree -> nested-node JSON (same schema as xgb.dump) ----
+## Converts one ranger tree (treeInfo data.frame) into the nested node format
+## the browser tool already consumes for XGBoost: internal nodes carry
+## {split, split_condition, yes, no, missing, children:[left,right]} and leaves
+## carry {leaf: P(failure)}. ranger sends values <= splitval to the LEFT child,
+## so left == "yes". There are no missing values at predict time (the tool
+## imputes first), so missing points to the left child by convention. The RF
+## probability is the MEAN of the per-tree leaf probabilities (handled by the
+## tool), matching a ranger probability forest.
+rf_tree_to_node <- function(ti, id) {
+  row <- ti[ti$nodeID == id, ]
+  if (isTRUE(row$terminal)) {
+    return(list(nodeid = id, leaf = unname(row$pred.1)))          # leaf = probability of failure
+  }
+  list(nodeid = id,
+       split = row$splitvarName, split_condition = unname(row$splitval),
+       yes = row$leftChild, no = row$rightChild, missing = row$leftChild,
+       children = list(rf_tree_to_node(ti, row$leftChild),
+                       rf_tree_to_node(ti, row$rightChild)))
+}
 
 datos <- cargar_datos_ml()
 
@@ -71,6 +92,16 @@ exportar_escenario <- function(df, vars, etiqueta) {
     data = xgboost::xgb.DMatrix(X, label = y), nrounds = 80, verbose = 0)
   xgb_json <- paste(xgboost::xgb.dump(xgb, dump_format = "json"), collapse = "")
 
+  ## --- Random forest (probability forest -> arboles como nodos anidados) ---
+  ## Bosque compacto para el navegador: pocos arboles y profundidad limitada,
+  ## para que el JSON no pese megabytes en la pagina publica, conservando la
+  ## discriminacion (~igual a la del paper). Mismas features (X) que los demas.
+  set.seed(SEED)
+  rf <- ranger::ranger(x = as.data.frame(X), y = factor(y, levels = c(0, 1)),
+                       probability = TRUE, num.trees = 150, min.node.size = 10,
+                       max.depth = 5, respect.unordered.factors = "order")
+  rf_trees <- lapply(seq_len(rf$num.trees), function(k) rf_tree_to_node(treeInfo(rf, tree = k), 0))
+
   ## --- Validacion en nuestros pacientes (resustitucion, referencia) ---
   p_glm <- predict(glm_fit, type = "response")
   auc_glm <- as.numeric(pROC::auc(pROC::roc(y, p_glm, quiet = TRUE)))
@@ -83,6 +114,8 @@ exportar_escenario <- function(df, vars, etiqueta) {
     lasso = list(intercept = unname(la_coef["(Intercept)"]),
                  coef = as.list(la_coef[setdiff(names(la_coef), "(Intercept)")])),
     xgboost = list(trees = xgb_json, base_score = base),
+    random_forest = list(trees = rf_trees, n_trees = rf$num.trees,
+                         note = "Probability forest. Prediction = mean of per-tree leaf probabilities. Leaves hold P(failure). ranger sends values <= split_condition to 'yes' (left)."),
     imputation = imp,
     auc_resubstitution = round(auc_glm, 3)
   )
