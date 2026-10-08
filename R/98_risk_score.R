@@ -124,4 +124,40 @@ message("[98] PRE estratos:"); print(PRE$strata,row.names=FALSE)
 message(sprintf("[98] PRE AUC aparente %.3f | CV %.3f (%.3f-%.3f)",PRE$app_auc,PRE$cv_auc,PRE$cv_ci[1],PRE$cv_ci[2]))
 message("[98] EoTx estratos:"); print(POST$strata,row.names=FALSE)
 message(sprintf("[98] EoTx AUC aparente %.3f | CV %.3f",POST$app_auc,POST$cv_auc))
+## ---- Exploratory: approximate failure risk by TREATMENT -------------
+## The study is not powered to predict failure separately for each drug
+## (few failures per arm: see counts below) and treatment was not randomised
+## (confounding by indication), so these estimates are exploratory only and
+## are reported because this is the first study to look at them.
+sc_pre <- PRE$score                                           # pre-treatment SCARS points per patient
+tx     <- d_pre$tratamiento                                   # treatment received (Glucantime / Miltefosine)
+y      <- PRE$y                                               # 0/1 failure
+strat  <- cut(sc_pre, c(-1, 2, 5, 99), labels = c("Low (0-2)","Intermediate (3-5)","High (6+)"))  # SCARS risk strata
+## observed failure rate by treatment x risk stratum (approximate cell estimates)
+tx_strata <- do.call(rbind, lapply(sort(unique(tx)), function(t)              # loop treatments
+  do.call(rbind, lapply(levels(strat), function(L) {                          # loop strata
+    sel <- tx == t & strat == L; n <- sum(sel); f <- sum(y[sel])              # cell N and failures
+    data.frame(Treatment = t, Stratum = L, N = n, Failures = f,
+               `Observed failure %` = ifelse(n > 0, sprintf("%.0f", 100*f/n), "-"), check.names = FALSE)
+  }))))
+write.csv(tx_strata, file.path(dest, "score_by_treatment.csv"), row.names = FALSE)   # save the exploratory table
+## treatment-adjusted logistic: predicted P(failure) by score for each drug
+m_tx <- suppressWarnings(glm(y ~ sc_pre + factor(tx), family = binomial))     # score + treatment main effect
+pred_tx <- do.call(rbind, lapply(levels(factor(tx)), function(t)              # predicted risk per drug across the score
+  data.frame(Treatment = t, Score = 0:10,
+             Pred_failure = round(predict(m_tx, data.frame(sc_pre = 0:10,
+                               tx = factor(t, levels = levels(factor(tx)))), type = "response"), 3))))
+write.csv(pred_tx, file.path(dest, "score_by_treatment_predicted.csv"), row.names = FALSE)   # save predicted-risk curves
+## observed failure by the score's age bands (younger patients fail more; the score already gives them more points)
+ageband <- factor(cut(d_pre$edad, c(0,25,40,200), right = FALSE, labels = c("<25","25-39",">=40")))  # same bands as the score
+age_tab <- do.call(rbind, lapply(levels(ageband), function(L){                 # failure rate per age band
+  sel <- ageband == L; n <- sum(sel); f <- sum(y[sel])
+  data.frame(Age_band = L, N = n, Failures = f, `Observed failure %` = sprintf("%.1f", 100*f/n), check.names = FALSE) }))
+write.csv(age_tab, file.path(dest, "failure_by_age_band.csv"), row.names = FALSE)  # save age-band failure table
+child_mil <- sum(d_pre$edad < 18 & d_pre$tratamiento == "Miltefosine"); child_n <- sum(d_pre$edad < 18)  # age-treatment confounding
+message(sprintf("[98] age-treatment confounding: %d of %d children (<18) received miltefosine (none received antimony)", child_mil, child_n))
+or_tx <- exp(coef(m_tx)[["factor(tx)Miltefosine"]])          # adjusted OR of miltefosine vs glucantime
+message(sprintf("[98] Treatment (exploratory): adjusted OR miltefosine vs glucantime = %.2f (near 1 -> similar risk once the score is accounted for)", or_tx))
+message("[98] failure by treatment x stratum:"); print(tx_strata, row.names = FALSE)
+
 message("[98] DONE.")

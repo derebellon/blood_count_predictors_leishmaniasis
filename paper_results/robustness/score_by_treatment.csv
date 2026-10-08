@@ -1,0 +1,7 @@
+"Treatment","Stratum","N","Failures","Observed failure %"
+"Glucantime","Low (0-2)",16,0,"0"
+"Glucantime","Intermediate (3-5)",71,7,"10"
+"Glucantime","High (6+)",44,16,"36"
+"Miltefosine","Low (0-2)",17,0,"0"
+"Miltefosine","Intermediate (3-5)",38,5,"13"
+"Miltefosine","High (6+)",14,3,"21"
