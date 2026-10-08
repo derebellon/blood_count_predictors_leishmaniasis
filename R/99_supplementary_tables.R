@@ -12,23 +12,21 @@ dest<-out_dir("99_supplementary")
 d<-read.csv(ANALYSIS_CSV,check.names=TRUE)
 d$Outcome<-ifelse(d$estado_final=="Therapeutic failure","Failure","Cure")
 
-## ---- S1: incidencia acumulada de falla por momento ------------------
+## ---- S1: incidencia de falla por visita (N = evaluados en esa visita) --
+## El denominador es quien FUE EVALUADO en esa visita; quien ya se decreto o
+## no asistio NO entra en el N (como en la tesis original). Fallas INCIDENTES
+## (primera vez clasificado como falla).
 isTF<-function(x) !is.na(x) & x=="Therapeutic failure"
-cum_eot <- isTF(d$estado_fin_tto)
-cum_w8  <- cum_eot | isTF(d$estado_sem8)
-cum_w13 <- cum_w8  | isTF(d$estado_sem13)
-cum_w26 <- cum_w13 | isTF(d$estado_sem26) | isTF(d$estado_final)
-N<-nrow(d)
-wilson<-function(k,n){ pt<-prop.test(k,n,correct=FALSE); c(est=100*k/n, lo=100*pt$conf.int[1], hi=100*pt$conf.int[2]) }
-rows<-list(
-  c("End of treatment", sum(cum_eot)),
-  c("Week 8",  sum(cum_w8)),
-  c("Week 13", sum(cum_w13)),
-  c("Week 26 (final)", sum(cum_w26)))
-s1<-do.call(rbind,lapply(rows,function(r){k<-as.integer(r[2]);w<-wilson(k,N)
-  data.frame(Timepoint=r[1],Failures=k,N=N,`Cumulative incidence (%)`=sprintf("%.2f (%.2f-%.2f)",w["est"],w["lo"],w["hi"]),check.names=FALSE)}))
-writeLines(c("## Table S1. Cumulative incidence of therapeutic failure by follow-up timepoint\n",
-  "Cumulative proportion of the cohort (N=200) identified as therapeutic failure by each timepoint; 95% CI by the Wilson (score) method.\n",
+wilson<-function(k,n){ pt<-suppressWarnings(prop.test(k,n,correct=FALSE)); c(est=100*k/n, lo=100*max(0,pt$conf.int[1]), hi=100*pt$conf.int[2]) }
+visits<-list(c("End of treatment","estado_fin_tto"),c("Week 8","estado_sem8"),c("Week 13","estado_sem13"),c("Week 26","estado_sem26"))
+prevTF<-rep(FALSE,nrow(d)); s1l<-list()
+for(v in visits){col<-v[2]; Nev<-sum(!is.na(d[[col]])); new<-isTF(d[[col]])&!prevTF; k<-sum(new); w<-wilson(k,Nev)
+  s1l[[length(s1l)+1]]<-data.frame(Timepoint=v[1],`Patients evaluated (N)`=Nev,`New failures (n)`=k,
+    `Incidence, % (95% CI)`=sprintf("%.2f (%.2f-%.2f)",w["est"],w["lo"],w["hi"]),check.names=FALSE)
+  prevTF<-prevTF|isTF(d[[col]])}
+s1<-do.call(rbind,s1l)
+writeLines(c("## Table S1. Incidence of therapeutic failure at each follow-up timepoint\n",
+  "Failures newly identified at each visit, among the patients evaluated at that visit; patients already classified (cured or failed) or not attending are excluded from the denominator (N). 95% CI by the Wilson method. Overall cumulative incidence at the end of follow-up: 15.5% (31/200).\n",
   knitr::kable(s1,format="pipe",row.names=FALSE)), file.path(dest,"S1.md"))
 message("[99] S1 ok")
 
@@ -88,6 +86,15 @@ message("[99] S5 ok")
 ## ---- S6: random forest por familias ---------------------------------
 rff<-read.csv("outputs/34_rf_families/rf_families.csv",check.names=TRUE)
 rff<-rff[,c("Scenario","ROC_AUC","PR_AUC","Top5_importance")]
+recell<-c(Neutrofilos="Neutrophils",Linfocitos="Lymphocytes",Monocitos="Monocytes",Eosinofilos="Eosinophils",Basofilos="Basophils",Granulocitos="IG",Globulos_rojos="Red blood cells",Hemoglobina="Haemoglobin",Hematocrito="Haematocrit",Plaquetas="Platelets")
+pretty_imp<-function(s){ items<-strsplit(s,"; ")[[1]]
+  items<-sapply(items,function(f){ if(f=="edad") return("Age"); if(f=="sexo") return("Sex")
+    mom<-if(grepl("_pre$",f))" (pre)" else if(grepl("_post$",f))" (EoTx)" else ""; base<-sub("_(pre|post)$","",f)
+    if(grepl("^pct_",base)) return(paste0(tools::toTitleCase(sub("^pct_","",base))," %",mom))
+    if(grepl("^i_",base)) return(paste0(gsub("_","/",sub("^i_","",base))," ratio",mom))
+    if(base%in%names(recell)) return(paste0(recell[[base]],mom)); f})
+  paste(items,collapse="; ") }
+rff$Top5_importance<-sapply(rff$Top5_importance,pretty_imp)
 writeLines(c("## Table S6. Random forest fitted to separate parameter families (counts, percentages, ratios)\n",
   "Out-of-sample ROC-AUC and PR-AUC (repeated cross-validation) and the top-5 variables by permutation importance.\n",
   knitr::kable(rff,format="pipe",row.names=FALSE)),file.path(dest,"S6.md"))

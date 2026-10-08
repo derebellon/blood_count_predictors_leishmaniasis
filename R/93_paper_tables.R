@@ -23,7 +23,13 @@ pretty_lasso <- function(x){
   fixed<-c(edad="Age",imc="Body mass index",sexoMale="Male sex",mono_ratio="Monocyte ratio (EoTx/pre)",
     adenopatia_evalbasYes="Lymphadenopathy (pre-Tx)",infeccion_concom_evalbasYes="Concomitant infection (pre-Tx)",
     infeccion_concom_fttoYes="Concomitant infection (EoTx)",tratamientoMiltefosine="Miltefosine (vs Glucantime)",
-    comorbilidadesYes="Comorbidities")
+    comorbilidadesYes="Comorbidities",
+    sexo="Sex",etnia="Ethnicity",comorbilidades="Comorbidities",especie_corta="Leishmania species",
+    tratamiento="Treatment",numero_lesiones="Number of lesions",lesiones_categorica="Number of lesions",
+    tiempo_evolucion_dicotomica="Time of lesion evolution",tiempo_sintom_semanas="Time of evolution (weeks)",
+    tipo_lesion_eval_base_corta="Lesion type (baseline)",adenopatia_evalbas="Regional lymphadenopathy",
+    infeccion_concom_evalbas="Concomitant infection (pre-Tx)",infeccion_concom_ftto="Concomitant infection (EoTx)",
+    peso="Weight",talla="Height",antecedente_leish="Prior leishmaniasis")
   one<-function(f){
     if(f %in% names(fixed)) return(fixed[[f]])
     if(grepl("^var_",f)){cn<-sub("^var_","",f);nm<-ifelse(cn%in%names(cell),cell[[cn]],cn);return(paste0("Δ ",nm," (EoTx-pre)"))}
@@ -97,7 +103,9 @@ message("[93] T3 ok")
 uni<-readRDS("outputs/20_logistic_univariate/univariate_OR.rds")
 t2md<-c("## Table 2. Univariate associations with therapeutic failure (OR per 1-SD, logistic, multiple imputation)\n")
 relabel_md<-function(k){
-  toks<-unique(unlist(regmatches(k,gregexpr("i_[a-z0-9]+_[a-z0-9]+_(pre|post)|pct_[a-z]+_(pre|post)|var_[A-Za-z]+|(Neutrofilos|Linfocitos|Monocitos|Eosinofilos|Basofilos|Granulocitos|Globulos_rojos|Hemoglobina|Hematocrito|Plaquetas)_(pre|post)|mono_ratio",k))))
+  clin<-"\\b(edad|sexo|etnia|comorbilidades|especie_corta|tratamiento|numero_lesiones|lesiones_categorica|tiempo_evolucion_dicotomica|tiempo_sintom_semanas|tipo_lesion_eval_base_corta|adenopatia_evalbas|infeccion_concom_evalbas|infeccion_concom_ftto|peso|talla|antecedente_leish|imc)\\b"
+  pat<-paste0("i_[a-z0-9]+_[a-z0-9]+_(pre|post)|pct_[a-z]+_(pre|post)|var_[A-Za-z]+|(Neutrofilos|Linfocitos|Monocitos|Eosinofilos|Basofilos|Granulocitos|Globulos_rojos|Hemoglobina|Hematocrito|Plaquetas)_(pre|post)|mono_ratio|",clin)
+  toks<-unique(unlist(regmatches(k,gregexpr(pat,k))))
   if(length(toks)){toks<-toks[order(-nchar(toks))]; for(t in toks) k<-gsub(t,pretty_lasso(t),k,fixed=TRUE)}
   k
 }
