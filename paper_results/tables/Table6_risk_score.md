@@ -44,3 +44,12 @@ Points were assigned to each predictor in proportion to its regression coefficie
 | Low | 0-2 | 32 | 0 | 0.0 (0.0-10.7) | 0.0 |
 | Intermediate | 3-4 | 62 | 7 | 11.3 (5.6-21.5) | 16.7 |
 | High | 5+ | 77 | 21 | 27.3 (18.6-38.1) | 21.7 |
+
+**Pre-treatment score — operating characteristics (false positives / false negatives)**
+
+| Threshold | Sensitivity | Specificity | PPV | NPV | False positives | False negatives |
+|---|---|---|---|---|---|---|
+| Rule-out (score >= 3) | 100% | 20% | 0.19 | 1.00 | 136 | 0 |
+| Rule-in (score >= 6) | 61% | 77% | 0.33 | 0.92 | 39 | 12 |
+
+At the rule-out threshold (score >= 3) no failure is missed (0 false negatives), at the cost of many false positives (low specificity); at the rule-in threshold (score >= 6) both error types are moderate. This illustrates that the score is best used to rule out failure (a low score safely excludes it) and to flag the high-risk stratum, not as a stand-alone diagnostic test.
