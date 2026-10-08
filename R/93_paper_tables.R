@@ -13,6 +13,32 @@ suppressPackageStartupMessages({
 source("R/utils/ml_data.R")
 dest <- out_dir("93_paper_tables")
 
+## etiquetador legible para los terminos del LASSO (hemograma + clinicas)
+pretty_lasso <- function(x){
+  cell<-c(Neutrofilos="Neutrophils",Linfocitos="Lymphocytes",Monocitos="Monocytes",Eosinofilos="Eosinophils",
+          Basofilos="Basophils",Granulocitos="Immature granulocytes",Globulos_rojos="Red blood cells",
+          Hemoglobina="Haemoglobin",Hematocrito="Haematocrit",Plaquetas="Platelets")
+  rc<-c(neu="neutrophil",eos="eosinophil",mono="monocyte",baso="basophil",linfo="lymphocyte",lin="lymphocyte",granu="IG",monoeosneu="(mono+eos+neu)")
+  pc<-c(neutro="Neutrophil",linfo="Lymphocyte",mono="Monocyte",eosino="Eosinophil",baso="Basophil")
+  fixed<-c(edad="Age",imc="Body mass index",sexoMale="Male sex",mono_ratio="Monocyte ratio (EoTx/pre)",
+    adenopatia_evalbasYes="Lymphadenopathy (pre-Tx)",infeccion_concom_evalbasYes="Concomitant infection (pre-Tx)",
+    infeccion_concom_fttoYes="Concomitant infection (EoTx)",tratamientoMiltefosine="Miltefosine (vs Glucantime)",
+    comorbilidadesYes="Comorbidities")
+  one<-function(f){
+    if(f %in% names(fixed)) return(fixed[[f]])
+    if(grepl("^var_",f)){cn<-sub("^var_","",f);nm<-ifelse(cn%in%names(cell),cell[[cn]],cn);return(paste0("Δ ",nm," (EoTx-pre)"))}
+    if(grepl("^(etnia|especie_corta|variacion_lesion_post|tipo_lesion|rango_dosis|lesiones_categorica|tiempo_evolucion)",f))
+      return(gsub("_"," ",f))
+    mom<-if(grepl("_pre$",f))" (pre-Tx)" else if(grepl("_post$",f))" (EoTx)" else ""
+    base<-sub("_(pre|post)$","",f)
+    if(grepl("^pct_",base)){k<-sub("^pct_","",base);nm<-ifelse(k%in%names(pc),pc[[k]],k);return(paste0(nm," %",mom))}
+    if(grepl("^i_",base)){cc<-strsplit(sub("^i_","",base),"_")[[1]];a<-ifelse(cc[1]%in%names(rc),rc[[cc[1]]],cc[1]);b<-ifelse(cc[2]%in%names(rc),rc[[cc[2]]],cc[2]);lab<-paste0(a,"/",b," ratio");substr(lab,1,1)<-toupper(substr(lab,1,1));return(paste0(lab,mom))}
+    if(base%in%names(cell)) return(paste0(cell[[base]],mom))
+    f
+  }
+  vapply(x,one,character(1))
+}
+
 ## ============ T3: maquinaria RR (reusa 21) ============================
 rrmods <- readRDS("outputs/21_logistic_multivariate/RR_models.rds")
 cp <- rrmods$cutpoints
@@ -120,6 +146,8 @@ lasso_coef<-function(df,vars,etq){
     co<-co[co$coef!=0 & co$term!="(Intercept)",]; co<-co[order(-abs(co$coef)),] }
   if(nrow(co)==0) co<-data.frame(term="(none selected)",coef=NA)
   co<-head(co,15)
+  co$term<-pretty_lasso(co$term)
+  names(co)<-c("Variable","Coefficient")
   c(paste0("\n**",etq,"** (lambda.1se)\n"),knitr::kable(co,format="pipe",row.names=FALSE))
 }
 t4md<-c("## Table 4. LASSO regression: variables retained and coefficients (log-odds of failure)\n",
