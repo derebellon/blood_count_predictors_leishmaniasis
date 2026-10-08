@@ -96,9 +96,15 @@ message("[93] T3 ok")
 ## ============ T2: OR univariado (gtsummary ya hechos) =================
 uni<-readRDS("outputs/20_logistic_univariate/univariate_OR.rds")
 t2md<-c("## Table 2. Univariate associations with therapeutic failure (OR per 1-SD, logistic, multiple imputation)\n")
+relabel_md<-function(k){
+  toks<-unique(unlist(regmatches(k,gregexpr("i_[a-z0-9]+_[a-z0-9]+_(pre|post)|pct_[a-z]+_(pre|post)|var_[A-Za-z]+|(Neutrofilos|Linfocitos|Monocitos|Eosinofilos|Basofilos|Granulocitos|Globulos_rojos|Hemoglobina|Hematocrito|Plaquetas)_(pre|post)|mono_ratio",k))))
+  if(length(toks)){toks<-toks[order(-nchar(toks))]; for(t in toks) k<-gsub(t,pretty_lasso(t),k,fixed=TRUE)}
+  k
+}
 render<-function(tb,sub){
   k<-tryCatch(as.character(gtsummary::as_kable(tb,format="pipe")),error=function(e)NULL)
   if(is.null(k)) k<-tryCatch({tt<-gtsummary::as_tibble(tb); knitr::kable(tt,format="pipe")},error=function(e)"(no renderizable)")
+  k<-relabel_md(k)
   c(paste0("\n**",sub,"**\n"),k)
 }
 t2md<-c(t2md,
