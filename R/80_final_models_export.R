@@ -96,11 +96,17 @@ exportar_escenario <- function(df, vars, etiqueta) {
   ## Bosque compacto para el navegador: pocos arboles y profundidad limitada,
   ## para que el JSON no pese megabytes en la pagina publica, conservando la
   ## discriminacion (~igual a la del paper). Mismas features (X) que los demas.
+  ## IMPORTANTE: seedeamos el RF pero RESTAURAMOS el estado del RNG despues, para
+  ## no perturbar la aleatoriedad de los modelos que se entrenan a continuacion
+  ## (lasso/xgboost del siguiente escenario) y mantener identicos los modelos ya
+  ## desplegados; el RF solo AGREGA, no cambia logistic/lasso/xgboost.
+  rng_saved <- if (exists(".Random.seed", envir = .GlobalEnv)) get(".Random.seed", envir = .GlobalEnv) else NULL
   set.seed(SEED)
   rf <- ranger::ranger(x = as.data.frame(X), y = factor(y, levels = c(0, 1)),
                        probability = TRUE, num.trees = 150, min.node.size = 10,
                        max.depth = 5, respect.unordered.factors = "order")
   rf_trees <- lapply(seq_len(rf$num.trees), function(k) rf_tree_to_node(treeInfo(rf, tree = k), 0))
+  if (!is.null(rng_saved)) assign(".Random.seed", rng_saved, envir = .GlobalEnv)  # restore RNG stream
 
   ## --- Validacion en nuestros pacientes (resustitucion, referencia) ---
   p_glm <- predict(glm_fit, type = "response")
