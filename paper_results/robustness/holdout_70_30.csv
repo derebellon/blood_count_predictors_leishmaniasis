@@ -1,0 +1,2 @@
+"n_train","n_test","AUC","Sens_fail","Spec_fail"
+140,60,0.815,0.889,0.647

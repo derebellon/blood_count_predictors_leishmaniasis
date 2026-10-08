@@ -49,7 +49,8 @@ Points were assigned to each predictor in proportion to its regression coefficie
 
 | Threshold | Sensitivity | Specificity | PPV | NPV | False positives | False negatives |
 |---|---|---|---|---|---|---|
-| Rule-out (score >= 3) | 100% | 20% | 0.19 | 1.00 | 136 | 0 |
+| Rule-out (score >= 4) | 94% | 33% | 0.20 | 0.96 | 114 | 2 |
+| Best balance (score >= 5, Youden-optimal) | 84% | 57% | 0.26 | 0.95 | 73 | 5 |
 | Rule-in (score >= 6) | 61% | 77% | 0.33 | 0.92 | 39 | 12 |
 
-At the rule-out threshold (score >= 3) no failure is missed (0 false negatives), at the cost of many false positives (low specificity); at the rule-in threshold (score >= 6) both error types are moderate. This illustrates that the score is best used to rule out failure (a low score safely excludes it) and to flag the high-risk stratum, not as a stand-alone diagnostic test.
+The score reaches its best overall balance at the Youden-optimal cut-off (score >= 5): 84% sensitivity and 57% specificity for the pre-treatment score (75%/61% at end of treatment). It is meant to be read in both directions rather than as a stand-alone diagnostic test: a low score rules failure out (high negative predictive value; a lower cut-off such as >= 4 maximises sensitivity), while a high score (>= 6) raises specificity and flags the high-risk stratum that warrants closer follow-up.
