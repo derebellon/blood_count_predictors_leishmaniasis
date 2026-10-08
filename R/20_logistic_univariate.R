@@ -138,6 +138,54 @@ saveRDS(list(clinical = uni_clin, hemogram_pre = uni_hemo,
              hemogram_post = uni_hemo_post, variation = uni_var),
         file.path(dest, "univariate_OR.rds"))
 
+## ====================================================================
+## Univariate RELATIVE RISKS (robust Poisson, MI-pooled) to accompany the
+## ORs in Table 2. The thesis reported associations as RR (log-binomial);
+## here we obtain the univariate RR with a robust (HC0) Poisson, which
+## approximates log-binomial without convergence problems, pooled across
+## imputations by Rubin's rules -- exactly the estimator used for the
+## MULTIVARIABLE models (script 21). Continuous predictors are standardised
+## to 1 SD (RR per 1-SD), matching the OR column. Logistic regression is
+## thus used only for the OR screening and for prediction; every reported
+## ASSOCIATION (uni- and multivariable) is a robust-Poisson RR.
+## OUTPUT: outputs/20_logistic_univariate/univariate_RR_clinical.csv (+ hemogram CSVs)
+## ====================================================================
+suppressPackageStartupMessages(library(sandwich))               # robust (Huber-White) covariance for Poisson RR
+rr_univ_mi <- function(mids_obj, predictores) {                 # per-predictor univariate RR, MI-pooled
+  est <- estandarizar_continuas(mids_obj, predictores); mids_obj <- est$mids  # standardise continuous -> RR per 1-SD
+  m <- mids_obj$m                                               # number of imputations
+  out <- list()
+  for (v in predictores) {                                      # one univariate model per predictor
+    ests <- lapply(seq_len(m), function(i) {                    # fit on each imputed dataset
+      d <- complete(mids_obj, i); d$fail01 <- as.integer(d$outcome == "failure")  # 0/1 failure outcome
+      f <- suppressWarnings(glm(reformulate(v, response = "fail01"), data = d, family = poisson(link = "log")))  # Poisson-log
+      list(b = coef(f), V = sandwich::vcovHC(f, type = "HC0"))  # robust coefficients + covariance
+    })
+    bmat <- sapply(ests, `[[`, "b")                             # k terms x m imputations
+    if (is.null(dim(bmat))) bmat <- matrix(bmat, nrow = 1, dimnames = list(names(ests[[1]]$b), NULL))
+    Qbar <- rowMeans(bmat)                                      # pooled point estimate (Rubin)
+    Ubar <- Reduce(`+`, lapply(ests, `[[`, "V")) / m            # within-imputation variance
+    B    <- if (m > 1) stats::cov(t(bmat)) else diag(0, length(Qbar))  # between-imputation variance
+    Tvar <- diag(Ubar) + (1 + 1/m) * diag(B)                    # total variance
+    SE   <- sqrt(Tvar); z <- Qbar / SE                          # pooled SE and Wald z
+    df <- data.frame(variable = v, term = names(Qbar), RR = exp(Qbar),
+                     lo = exp(Qbar - 1.96*SE), hi = exp(Qbar + 1.96*SE),
+                     p = 2*pnorm(-abs(z)), row.names = NULL)
+    out[[v]] <- df[df$term != "(Intercept)", ]                  # drop the intercept
+  }
+  res <- do.call(rbind, out)
+  res$`RR (95% CI)` <- sprintf("%.2f (%.2f-%.2f)", res$RR, res$lo, res$hi)  # formatted RR
+  res$`p-value`     <- ifelse(res$p < 0.001, "<0.001", sprintf("%.3f", res$p))
+  res
+}
+rr_clin      <- rr_univ_mi(mids_pre,  clinicas)                 # Table 2 clinical RR
+rr_hemo_pre  <- rr_univ_mi(mids_pre,  hemo_pre)                 # pre-Tx blood-count RR (for coherence / S-tables)
+rr_hemo_post <- rr_univ_mi(mids_post, hemo_post)               # EoTx blood-count RR
+write.csv(rr_clin,      file.path(dest, "univariate_RR_clinical.csv"),     row.names = FALSE)
+write.csv(rr_hemo_pre,  file.path(dest, "univariate_RR_hemogram_pre.csv"), row.names = FALSE)
+write.csv(rr_hemo_post, file.path(dest, "univariate_RR_hemogram_post.csv"),row.names = FALSE)
+message("[20] Univariate robust-Poisson RR saved (clinical + blood count, MI-pooled).")
+
 ## ---- Resumen en consola: cuales cruzan p<0.05 ------------------------
 resumen <- function(tbl, etiqueta) {
   d <- tbl$table_body

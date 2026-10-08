@@ -120,6 +120,52 @@ When analysing cell population ratios, and their variations between Pre-Tx and E
 
 Blood count parameters were screened by their bivariate association with therapeutic outcome. Seven blood count parameters that showed a statistically significant difference between cures and TF (*p*-value \< 0.1 and/or *q*-value ≤ 0.3) were selected for construction of the multivariate models ([Table 2]{.mark}).
 
+**Table 2. Univariate associations with therapeutic failure.** Odds ratios (logistic regression) and relative risks (robust Poisson), per 1-SD increase for continuous variables; multiple imputation, Rubin-pooled. *Underdose: no failures observed, relative risk not estimable.
+
+| Clinical and sociodemographic variables | OR | 95% CI | RR (95% CI) | p-value |
+|---|---|---|---|---|
+| Age | 0.67 | 0.44, 1.01 | 0.71 (0.52-0.98) | 0.053 |
+| Sex |   |   |   |   |
+| Female | — | — | 1.00 (ref) |   |
+| Male | 4.50 | 1.02, 19.9 | 3.85 (0.96-15.50) | 0.047 |
+| Ethnicity |   |   |   |   |
+| Afro-Colombian | — | — | 1.00 (ref) |   |
+| Indigenous | 0.76 | 0.16, 3.68 | 0.79 (0.21-3.03) | 0.732 |
+| Mestizo | 0.56 | 0.23, 1.41 | 0.61 (0.28-1.35) | 0.219 |
+| Time of lesion evolution |   |   |   |   |
+| 4 weeks or less | — | — | 1.00 (ref) |   |
+| More than 4 weeks | 0.59 | 0.25, 1.39 | 0.65 (0.32-1.31) | 0.230 |
+| Body mass index | 0.72 | 0.48, 1.06 | 0.76 (0.58-0.99) | 0.095 |
+| Number of lesions |   |   |   |   |
+| One lesion | — | — | 1.00 (ref) |   |
+| Three or more lesions | 0.92 | 0.35, 2.44 | 0.93 (0.41-2.14) | 0.868 |
+| Two lesions | 1.28 | 0.51, 3.19 | 1.23 (0.58-2.61) | 0.595 |
+| Lesion type (baseline) |   |   |   |   |
+| Non-ulcerated lesion | — | — | 1.00 (ref) |   |
+| Ulcer | 0.63 | 0.23, 1.71 | 0.68 (0.31-1.52) | 0.362 |
+| Regional lymphadenopathy |   |   |   |   |
+| No | — | — | 1.00 (ref) |   |
+| Yes | 1.96 | 0.81, 4.71 | 1.73 (0.87-3.46) | 0.133 |
+| Concomitant infection (pre-Tx) |   |   |   |   |
+| No | — | — | 1.00 (ref) |   |
+| Yes | 4.42 | 0.93, 21.0 | 2.95 (1.18-7.42) | 0.062 |
+| Comorbidities |   |   |   |   |
+| No | — | — | 1.00 (ref) |   |
+| Yes | 1.39 | 0.28, 6.94 | 1.31 (0.36-4.73) | 0.688 |
+| Leishmania species |   |   |   |   |
+| L. braziliensis | — | — | 1.00 (ref) |   |
+| L. panamensis and other L. viannia spp | 0.35 | 0.12, 1.04 | 0.44 (0.21-0.96) | 0.059 |
+| Not isolated/Unknown | 0.24 | 0.06, 0.93 | 0.32 (0.11-0.92) | 0.038 |
+| Treatment |   |   |   |   |
+| Glucantime | — | — | 1.00 (ref) |   |
+| Miltefosine | 0.62 | 0.26, 1.47 | 0.66 (0.31-1.40) | 0.273 |
+| Medication dose range |   |   |   |   |
+| Normal range | — | — | 1.00 (ref) |   |
+| Overdose | 1.50 | 0.51, 4.39 | 1.39 (0.59-3.28) | 0.460 |
+| Underdose | 0.00 | 0.00, Inf | Not estimable* | 0.989 |
+
+
+
 In Pre-Tx parameters, lower platelet (RR 0.99 CI95% 0.98 - 0.99) and immature granulocyte counts were associated with TF, while eosinophils and the eosinophil/granulocyte ratio were not (*P* \>0.05 and *q* \>0.3) [(Table 2)]{.mark}. For immature granulocytes, the RR confidence interval marginally crossed the null value (RR 0.06 CI95% 0.003-1.06), but the Wald test (*P* =0.05) suggested a potential predictive capability, so the parameter was retained. No collinearity was found between the Pre-Tx parameters ([Figure S2]{.mark}). Consequently, Pre-Tx immature granulocyte count and Pre-Tx platelet count were carried forward to the multivariate models.
 
 In EoTx parameters, significant associations with TF were found for eosinophil percentage, absolute eosinophil count, the eosinophil/neutrophil ratio and the eosinophil/granulocyte ratio. Notably, the EoTx eosinophil/neutrophil ratio showed the highest RR for TF (RR 3.72, CI95% 1.60-8.62). Although the association between the monocyte variation ratio and TF crossed the null value when analysing the confidence interval (RR 2.10 CI95% 0.90 - 4.89), the *p*-value of the bivariate analysis was 0.04 and thus was kept as a variable for construction of the multivariate models. Other blood count parameters initially suggested by PLS-DA showed no statistically significant differences or associations ([Table S2]{.mark}).

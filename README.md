@@ -162,3 +162,5 @@ outputs/                # (git-ignored) regenerable Phase-2 outputs
 **Ethics:** IRBs of Universidad del Valle (E 033-021) and CIDEIM (Approval Act 07-2021); retrospective analysis of data from consenting participants.
 
 **License:** see `LICENSE`.
+
+- **Table 2 univariate associations (OR + RR):** `R/20_logistic_univariate.R` -> `outputs/20_logistic_univariate/univariate_OR_*.html` (odds ratios, logistic) and `outputs/20_logistic_univariate/univariate_RR_*.csv` (relative risks, robust Poisson, MI-pooled). Combined clinical Table 2 (OR+RR) as published: `paper_results/robustness/table2_clinical_OR_RR.csv`. Associations throughout the paper are reported as RR (robust Poisson / log-binomial); logistic regression is used only for the predictive models.
